@@ -1,0 +1,19 @@
+{
+  "scripts": {
+    "docs": "npx typedoc --options typedoc.config.cjs",
+    "compile": "npx tsc",
+    "jit": "npx tsc --watch",
+    "update": "npx tsc && npx typedoc --options typedoc.config.cjs"
+  },
+  "main": "./dist/index.js",
+  "dependencies": {
+    "typescript": "^5.2.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.9",
+    "typedoc": "^0.25.2",
+    "typedoc-plugin-extras": "^3.0.0",
+    "typedoc-plugin-mdn-links": "^3.1.0",
+    "typedoc-plugin-rename-defaults": "^0.6.7"
+  }
+}
