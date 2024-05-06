@@ -3,7 +3,7 @@ import { EventEmitter } from 'node:events';
 export declare namespace Interfaces {
     /**
      * @description
-     * Internal data within the {@link InternalData `Classes.InternalData`} class
+     * Internal data within the {@link Classes.InternalData `Classes.InternalData`} class
      */
     interface InternalDataInterface {
         /**
@@ -26,7 +26,7 @@ export declare namespace Interfaces {
      * @description
      * Extended version of the {@link InternalDataInterface Internal Data Interface}
      *
-     * Included all of the functions that the {@link InternalData `Objects.InternalData`} class contains
+     * Included all of the functions that the {@link Classes.InternalData `Classes.InternalData`} class contains
      */
     interface InternalFunctionsInterface extends InternalDataInterface {
         /**
@@ -39,7 +39,7 @@ export declare namespace Interfaces {
     }
     /**
      * @description
-     * Initalization data used to initalize the {@link InternalData `Objects.InternalData`} class
+     * Initalization data used to initalize the {@link Classes.InternalData `Classes.InternalData`} class
      */
     interface InternalDataInitInterface {
         /**
@@ -61,7 +61,7 @@ export declare namespace Interfaces {
     /**
      * @description
      * Base initalization interface used when initalizing a class which extends the
-     * {@link InternalData `Objects.InternalData`} class.
+     * {@link Classes.InternalData `Classes.InternalData`} class.
      */
     interface BaseInitInterface extends Omit<Interfaces.InternalDataInitInterface, 'type'> {
     }
@@ -86,7 +86,7 @@ export declare namespace Interfaces {
     /**
      * @description
      * Full Enchantment Data used within the
-     * {@link Enchantment `Classes.Enchantment`} class
+     * {@link Classes.Enchantment `Classes.Enchantment`} class
      */
     interface EnchantmentDataInterface {
         /**
@@ -233,7 +233,7 @@ export declare namespace Interfaces {
     }
     /**
      * @description
-     * Internal data within the {@link Enchantment `Classes.Enchantment`} class
+     * Internal data within the {@link Classes.Enchantment `Classes.Enchantment`} class
      */
     interface EnchantmentInterface extends InternalDataInterface {
         /**
@@ -251,7 +251,7 @@ export declare namespace Interfaces {
      * @description
      * Extended version of the {@link EnchantmentInterface Enchantment Interface}
      *
-     * Included all of the functions that the {@link Enchantment `Classes.Enchantment`} class contains
+     * Included all of the functions that the {@link Classes.Enchantment `Classes.Enchantment`} class contains
      */
     interface EnchantmentFunctionInterface extends InternalFunctionsInterface, EnchantmentInterface {
         /**
@@ -270,7 +270,7 @@ export declare namespace Interfaces {
     }
     /**
      * @description
-     * Initalization data used to initalize the {@link Enchantment `Classes.Enchantment`} class
+     * Initalization data used to initalize the {@link Classes.Enchantment `Classes.Enchantment`} class
      */
     interface EnchantmentInitInterface {
         /**
@@ -389,7 +389,7 @@ export declare namespace Interfaces {
     }
     /**
      * @description
-     * Internal data within the {@link Effect `Objects.Effect`} class
+     * Internal data within the {@link Classes.Effect `Classes.Effect`} class
      */
     interface EffectInterface extends InternalDataInterface {
         /**
@@ -402,13 +402,13 @@ export declare namespace Interfaces {
      * @description
      * Extended version of the {@link EffectInterface Effect Interface}
      *
-     * Included all of the functions that the {@link Effect `Objects.Effect`} class contains
+     * Included all of the functions that the {@link Classes.Effect `Classes.Effect`} class contains
      */
     interface EffectFunctionsInterface extends InternalFunctionsInterface, EffectInterface {
     }
     /**
      * @description
-     * Initalization data used to initalize the {@link Effect `Objects.Effect`} class
+     * Initalization data used to initalize the {@link Classes.Effect `Classes.Effect`} class
      */
     interface EffectInitInterface {
         /**
@@ -419,7 +419,7 @@ export declare namespace Interfaces {
     }
     /**
      * @description
-     * Internal data within the {@link Material `Objects.Material`} class
+     * Internal data within the {@link Classes.Material `Classes.Material`} class
      */
     interface MaterialInterface extends InternalDataInterface {
     }
@@ -427,19 +427,19 @@ export declare namespace Interfaces {
      * @description
      * Extended version of the {@link MaterialInterface Material Interface}
      *
-     * Included all of the functions that the {@link Material `Objects.Material`} class contains
+     * Included all of the functions that the {@link Classes.Material `Classes.Material`} class contains
      */
     interface MaterialFunctionInterface extends InternalFunctionsInterface, MaterialInterface {
     }
     /**
      * @description
-     * Initalization data used to initalize the {@link Material `Objects.Material`} class
+     * Initalization data used to initalize the {@link Classes.Material `Classes.Material`} class
      */
     interface MaterialInitInterface {
     }
     /**
      * @description
-     * Internal data within the {@link Game `Objects.Game`} class
+     * Internal data within the {@link Classes.Game `Classes.Game`} class
      */
     interface GameInterface {
     }
@@ -447,13 +447,13 @@ export declare namespace Interfaces {
      * @description
      * Extended version of the {@link GameInterface Game Interface}
      *
-     * Included all of the functions that the {@link Game `Objects.Game`} class contains
+     * Included all of the functions that the {@link Classes.Game `Classes.Game`} class contains
      */
     interface GameFunctionInterface extends GameInterface {
     }
     /**
      * @description
-     * Initalization data used to initalize the {@link Game `Objects.Game`} class
+     * Initalization data used to initalize the {@link Classes.Game `Classes.Game`} class
      */
     interface GameInitInterface {
     }
@@ -501,7 +501,7 @@ export declare namespace Interfaces {
     }
     /**
      * @description
-     * Internal data within the {@link Entity `Objects.Entity`} class
+     * Internal data within the {@link Classes.Entity `Classes.Entity`} class
      */
     interface EntityInterface {
         /**
@@ -539,7 +539,7 @@ export declare namespace Interfaces {
      * @description
      * Extended version of the {@link EntityInterface Entity Interface}
      *
-     * Included all of the functions that the {@link Entity `Objects.Entity`} class contains
+     * Included all of the functions that the {@link Classes.Entity `Classes.Entity`} class contains
      */
     interface EntityFunctionInterface extends InternalFunctionsInterface, EntityInterface {
         /**
@@ -607,7 +607,7 @@ export declare namespace Interfaces {
     }
     /**
      * @description
-     * Initalization data used to initalize the {@link Entity `Objects.Entity`} class
+     * Initalization data used to initalize the {@link Classes.Entity `Classes.Entity`} class
      */
     interface EntityInitInterface {
         /**
@@ -628,7 +628,7 @@ export declare namespace Interfaces {
     }
     /**
      * @description
-     * Internal data within the {@link Player `Objects.Player`} class
+     * Internal data within the {@link Classes.Player `Classes.Player`} class
      *
      * (Extends the {@link EntityInterface Entity Interface})
     */
@@ -638,7 +638,7 @@ export declare namespace Interfaces {
      * @description
      * Extended version of the {@link PlayerInterface Player Interface}
      *
-     * Included all of the functions that the {@link Player `Objects.Player`} class contains
+     * Included all of the functions that the {@link Classes.Player `Classes.Player`} class contains
      *
      * (Extends the {@link EntityFunctionInterface Entity Functions Interface})
      */
@@ -646,13 +646,13 @@ export declare namespace Interfaces {
     }
     /**
      * @description
-     * Initalization data used to initalize the {@link Player `Objects.Player`} class
+     * Initalization data used to initalize the {@link Classes.Player `Classes.Player`} class
      */
     interface PlayerInitInterface {
     }
     /**
      * @description
-     * Internal data within the {@link Tool `Objects.Tool`} class
+     * Internal data within the {@link Classes.Tool `Classes.Tool`} class
      */
     interface ToolInterface extends InternalDataInterface {
         /**
@@ -680,13 +680,13 @@ export declare namespace Interfaces {
      * @description
      * Extended version of the {@link ToolInterface Tool Interface}
      *
-     * Included all of the functions that the {@link Tool `Objects.Tool`} class contains
+     * Included all of the functions that the {@link Classes.Tool `Classes.Tool`} class contains
      */
     interface ToolFunctionInterface extends InternalFunctionsInterface, ToolInterface {
     }
     /**
      * @description
-     * Initalization data used to initalize the {@link Tool `Objects.Tool`} class
+     * Initalization data used to initalize the {@link Classes.Tool `Classes.Tool`} class
      */
     interface ToolInitInterface {
         /**
@@ -707,7 +707,7 @@ export declare namespace Interfaces {
     }
     /**
      * @description
-     * Internal data within the {@link Weapon `Objects.Weapon`} class
+     * Internal data within the {@link Classes.Weapon `Classes.Weapon`} class
      *
      * (Extends {@link ToolInterface Tool Interface})
      */
@@ -717,7 +717,7 @@ export declare namespace Interfaces {
      * @description
      * Extended version of the {@link WeaponInterface Weapon Interface}
      *
-     * Included all of the functions that the {@link Weapon `Objects.Weapon`} class contains
+     * Included all of the functions that the {@link Classes.Weapon `Classes.Weapon`} class contains
      *
      * (Extends the {@link ToolFunctionInterface Tool Functions Interface})
      */
@@ -725,13 +725,13 @@ export declare namespace Interfaces {
     }
     /**
      * @description
-     * Initalization data used to initalize the {@link Weapon `Objects.Weapon`} class
+     * Initalization data used to initalize the {@link Classes.Weapon `Classes.Weapon`} class
      */
     interface WeaponInitInterface {
     }
     /**
      * @description
-     * Internal data within the {@link Food `Objects.Food`} class
+     * Internal data within the {@link Classes.Food `Classes.Food`} class
      */
     interface FoodInterface extends InternalDataInterface {
     }
@@ -739,19 +739,19 @@ export declare namespace Interfaces {
      * @description
      * Extended version of the {@link FoodInterface Food Interface}
      *
-     * Included all of the functions that the {@link Food `Objects.Food`} class contains
+     * Included all of the functions that the {@link Classes.Food `Classes.Food`} class contains
      */
     interface FoodFunctionsInterface extends InternalFunctionsInterface, FoodInterface {
     }
     /**
      * @description
-     * Initalization data used to initalize the {@link Food `Objects.Food`} class
+     * Initalization data used to initalize the {@link Classes.Food `Classes.Food`} class
      */
     interface FoodInitInterface {
     }
     /**
      * @description
-     * Internal data within the {@link Block `Objects.Block`} class
+     * Internal data within the {@link Classes.Block `Classes.Block`} class
      */
     interface BlockInterface extends InternalDataInterface {
         /**
@@ -774,13 +774,13 @@ export declare namespace Interfaces {
      * @description
      * Extended version of the {@link BlockInterface Block Interface}
      *
-     * Included all of the functions that the {@link Block `Objects.Block`} class contains
+     * Included all of the functions that the {@link Classes.Block `Classes.Block`} class contains
      */
     interface BlockFunctionsInterface extends InternalFunctionsInterface, BlockInterface {
     }
     /**
      * @description
-     * Initalization data used to initalize the {@link Block `Objects.Block`} class
+     * Initalization data used to initalize the {@link Classes.Block `Classes.Block`} class
      */
     interface BlockInitInterface {
         /**
@@ -801,7 +801,7 @@ export declare namespace Interfaces {
     }
     /**
      * @description
-     * Internal data within the {@link StorageSlot `Objects.StorageSlot`} class
+     * Internal data within the {@link Classes.StorageSlot `Classes.StorageSlot`} class
      */
     interface StorageSlotInterface {
         /**
@@ -819,13 +819,13 @@ export declare namespace Interfaces {
      * @description
      * Extended version of the {@link StorageSlotInterface Storage Slot Interface}
      *
-     * Included all of the functions that the {@link StorageSlot `Objects.StorageSlot`} class contains
+     * Included all of the functions that the {@link Classes.StorageSlot `Classes.StorageSlot`} class contains
      */
     interface StorageSlotFunctionsInterface extends StorageSlotInterface {
     }
     /**
      * @description
-     * Initalization data used to initalize the {@link StorageSlot `Objects.StorageSlot`} class
+     * Initalization data used to initalize the {@link Classes.StorageSlot `Classes.StorageSlot`} class
      */
     interface StorageSlotInitInterface {
         /**
@@ -841,7 +841,7 @@ export declare namespace Interfaces {
     }
     /**
      * @description
-     * Internal data within the {@link StorageContainer `Objects.StorageContainer`} class
+     * Internal data within the {@link Classes.StorageContainer `Classes.StorageContainer`} class
      */
     interface StorageContainerInterface {
         /**
@@ -859,13 +859,13 @@ export declare namespace Interfaces {
      * @description
      * Extended version of the {@link StorageContainerInterface Storage Container Interface}
      *
-     * Included all of the functions that the {@link StorageContainer `Objects.StorageContainer`} class contains
+     * Included all of the functions that the {@link Classes.StorageContainer `Classes.StorageContainer`} class contains
      */
     interface StorageContainerFunctionsInterface extends StorageContainerInterface {
     }
     /**
      * @description
-     * Initalization data used to initalize the {@link StorageContainer `Objects.StorageContainer`} class
+     * Initalization data used to initalize the {@link Classes.StorageContainer `Classes.StorageContainer`} class
      */
     interface StorageContainerInitInterface {
         /**
@@ -879,37 +879,37 @@ export declare namespace Types {
     /**
      * @description
      * Keys within the
-     * {@link EnchantmentDataInterface.itemModifiers Item Modifiers} section of the
-     * {@link EnchantmentDataInterface Enchantment Data Interface}
+     * {@link Interfaces.EnchantmentDataInterface.itemModifiers Item Modifiers} section of the
+     * {@link Interfaces.EnchantmentDataInterface Enchantment Data Interface}
      */
     type EnchantmentItemModifiersType = "physicalAttackModifier" | "magicAttackModifier" | "psycologicalAttackModifier" | "globalAttackModifier" | "baseAttackModifier" | "durabilityModifier";
     /**
      * @description
      * Keys within the
-     * {@link EnchantmentDataInterface.entityModifiers Entity Modifiers} section of the
-     * {@link EnchantmentDataInterface Enchantment Data Interface}
+     * {@link Interfaces.EnchantmentDataInterface.entityModifiers Entity Modifiers} section of the
+     * {@link Interfaces.EnchantmentDataInterface Enchantment Data Interface}
      */
     type EnchantmentEntityModifiersType = "physicalAttackModifier" | "magicAttackModifier" | "psycologicalAttackModifier" | "globalAttackModifier" | "baseAttackModifier" | "physicalDefenseModifier" | "magicDefenseModifier" | "psycologicalDefenseModifier" | "globalDefenseModifier" | "baseDefenseModifier" | "healthModifier" | "regenerationModifier" | "speedModifier" | "waterMovementModifier";
     /**
      * @description
      * Keys within the
-     * {@link EnchantmentDataInterface.effects Effects} section of the
-     * {@link EnchantmentDataInterface Enchantment Data Interface}
+     * {@link Interfaces.EnchantmentDataInterface.effects Effects} section of the
+     * {@link Interfaces.EnchantmentDataInterface Enchantment Data Interface}
      */
     type EnchantmentEffectsType = "nightVision" | "waterBreathing" | "invisability";
     /**
      * @description
-     * Keys within the {@link EnchantmentEffectInterface Enchantment Effects} section
+     * Keys within the {@link Interfaces.EnchantmentEffectInterface Enchantment Effects} section
      */
     type EnchantmentEffectOptionsType = "requireFullSet" | "activated";
     /**
      * @description
-     * Location Discriptor that represents a location within the {@link EnchantmentDataInterface Enchantment Data Interface}
+     * Location Discriptor that represents a location within the {@link Interfaces.EnchantmentDataInterface Enchantment Data Interface}
      */
     type EnchantmentKeysType = `itemModifiers.${EnchantmentItemModifiersType}` | `entityModifiers.${EnchantmentEntityModifiersType}` | `effects.${EnchantmentEffectsType}.${EnchantmentEffectOptionsType}`;
     /**
      * @description
-     * Split-up Array-mapped version of the {@link EnchantmentKeysType Enchantment Keys Type}
+     * Split-up Array-mapped version of the {@link Types.EnchantmentKeysType Enchantment Keys Type}
      */
     type EnchantmentKeyLocationArrayType = [
         "itemModifiers",
@@ -940,7 +940,7 @@ export declare namespace Enums {
     /**
      * @description
      * Damage Types used to identify what type of damage to deal
-     * (used in both {@link Entity `Objects.Entity`} and {@link Weapon `Objects.Weapon`})
+     * (used in both {@link Classes.Entity `Classes.Entity`} and {@link Classes.Weapon `Classes.Weapon`})
      */
     enum DamageTypeEnum {
         /**
@@ -962,7 +962,7 @@ export declare namespace Enums {
     /**
      * @description
      * Data Type to identify what type of data is being stored
-     * (used in {@link InternalData `Objects.InternalData`})
+     * (used in {@link Classes.InternalData `Classes.InternalData`})
      */
     enum DataTypeEnum {
         /**
@@ -1004,7 +1004,7 @@ export declare namespace Enums {
     /**
      * @description
      * The material rank of the object
-     * (used in {@link Tool `Objects.Tool`})
+     * (used in {@link Classes.Tool `Classes.Tool`})
      */
     enum MaterialRankEnum {
         /**
@@ -1047,7 +1047,7 @@ export declare namespace Enums {
     /**
      * @description
      * Block Data Flags used to add on special pre-defined behaviors within the game
-     * (used in {@link Block `Objects.Block`})
+     * (used in {@link Classes.Block `Classes.Block`})
      */
     enum BlockFlagsEnum {
         /**
@@ -1069,7 +1069,7 @@ export declare namespace Enums {
     /**
      * @description
      * Block type identifer used to determain pre-defined actions, coliders, and physics for the block
-     * (used in {@link Block `Objects.Block`})
+     * (used in {@link Classes.Block `Classes.Block`})
      */
     enum BlockTypeEnum {
         /**
@@ -1091,7 +1091,7 @@ export declare namespace Enums {
     /**
      * @description
      * Tool types used to identify what type of tool an object is
-     * (used in {@link Tool `Objects.Tool`})
+     * (used in {@link Classes.Tool `Classes.Tool`})
      */
     enum ToolTypeEnum {
         /**
@@ -1126,10 +1126,10 @@ export declare namespace Classes {
      */
     class Formatters {
         /**
-         * @param data The array-set data to be converted into a valid {@link AttackClassStatsInterface DamageStat} object
+         * @param data The array-set data to be converted into a valid {@link Interfaces.AttackClassStatsInterface DamageStat} object
          * @description
          * Takes a singular array containing four sub-arrays (each with 2 values [percentage, integer]), each
-         * mapping out to an object point which will be used as a {@link AttackClassStatsInterface DamageStat} object
+         * mapping out to an object point which will be used as a {@link Interfaces.AttackClassStatsInterface DamageStat} object
          */
         static arrayToStats: (data: [[number, number], [number, number], [number, number], [number, number]]) => {
             phys: {
@@ -1235,7 +1235,7 @@ export declare namespace Classes {
      * The Entity class holds information relating to entites used and availible to the game.
      * This class is used for any and all entities (including players) within the game.
      *
-     * The class has many values defined in the {@link EntityInterface Entity Interface}
+     * The class has many values defined in the {@link Interfaces.EntityInterface Entity Interface}
      */
     class Entity extends InternalData implements Interfaces.EntityFunctionInterface {
         hp: Interfaces.ItemBaseRemainingStatsInterface;
@@ -1363,13 +1363,13 @@ export declare namespace Consts {
      * Duribility Map
      *
      * Contains all of the duribility values for the material ranks
-     * (used in {@link Tool `Objects.Tool`})
+     * (used in {@link Classes.Tool `Classes.Tool`})
      */
     const DurabilityMap: Map<Enums.MaterialRankEnum, number>;
     /**
      * @description
      * Blank/default version of the
-     * {@link EnchantmentDataInterface Enchantment Data Interface}
+     * {@link Interfaces.EnchantmentDataInterface Enchantment Data Interface}
      */
     const BlankEnchantmentModifiers: Interfaces.EnchantmentDataInterface;
     const BlankEntityStatsMod: Interfaces.EntityStatsModInterface;

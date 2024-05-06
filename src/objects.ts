@@ -1184,7 +1184,7 @@ export namespace Classes {
             Object.defineProperty(this, 'name', {
                 set: (d) => {
                     if (typeof d !== "string") throw new TypeError("The name must be a string")
-                    if (/[^A-z0-9\.\-_ ]/gmi.test(d)) throw new TypeError("The name can only contain alphanumeric charactors and the special charactors '-', '.', and '_'");
+                    if (/[^A-Za-z0-9\.\-_ ]/gmi.test(d)) throw new TypeError("The name can only contain alphanumeric charactors and the special charactors '-', '.', and '_'");
                     if ((d.length < 4 || d.length > 32) && this instanceof Player) throw new TypeError("The name value must be between 4 and 32 charactors long")
                     this.name = d
                 }

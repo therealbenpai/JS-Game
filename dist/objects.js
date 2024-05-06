@@ -13,10 +13,10 @@ var Classes;
      */
     class Formatters {
         /**
-         * @param data The array-set data to be converted into a valid {@link AttackClassStatsInterface DamageStat} object
+         * @param data The array-set data to be converted into a valid {@link Interfaces.AttackClassStatsInterface DamageStat} object
          * @description
          * Takes a singular array containing four sub-arrays (each with 2 values [percentage, integer]), each
-         * mapping out to an object point which will be used as a {@link AttackClassStatsInterface DamageStat} object
+         * mapping out to an object point which will be used as a {@link Interfaces.AttackClassStatsInterface DamageStat} object
          */
         static arrayToStats = (data) => ({
             phys: { percentage: data[0][0], integer: data[0][1] },
@@ -48,7 +48,7 @@ var Classes;
                 set: (d) => {
                     if (typeof d !== "string")
                         throw new TypeError("The name must be a string");
-                    if (/[^A-z0-9\.\-_ ]/gmi.test(d))
+                    if (/[^A-Za-z0-9\.\-_ ]/gmi.test(d))
                         throw new TypeError("The name can only contain alphanumeric charactors and the special charactors '-', '.', and '_'");
                     if ((d.length < 4 || d.length > 32) && this instanceof Player)
                         throw new TypeError("The name value must be between 4 and 32 charactors long");
@@ -155,7 +155,7 @@ var Classes;
      * The Entity class holds information relating to entites used and availible to the game.
      * This class is used for any and all entities (including players) within the game.
      *
-     * The class has many values defined in the {@link EntityInterface Entity Interface}
+     * The class has many values defined in the {@link Interfaces.EntityInterface Entity Interface}
      */
     class Entity extends InternalData {
         hp;
@@ -388,7 +388,7 @@ var Consts;
      * Duribility Map
      *
      * Contains all of the duribility values for the material ranks
-     * (used in {@link Tool `Objects.Tool`})
+     * (used in {@link Classes.Tool `Classes.Tool`})
      */
     Consts.DurabilityMap = new Map()
         .set(Enums.MaterialRankEnum.WOOD, 59)
@@ -402,7 +402,7 @@ var Consts;
     /**
      * @description
      * Blank/default version of the
-     * {@link EnchantmentDataInterface Enchantment Data Interface}
+     * {@link Interfaces.EnchantmentDataInterface Enchantment Data Interface}
      */
     Consts.BlankEnchantmentModifiers = {
         itemModifiers: {
