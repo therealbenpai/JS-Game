@@ -13,5 +13,11 @@ module.exports = {
     plugin: ["typedoc-plugin-rename-defaults", "typedoc-plugin-extras", "typedoc-plugin-mdn-links"],
     darkHighlightTheme: "material-theme-darker",
     lightHighlightTheme: "material-theme-ocean",
-    commentStyle: "all"
-};
+    commentStyle: "all",
+    sitemapBaseUrl: 'https://docs.sparty18.com/',
+    searchInComments: true,
+    emit: 'both',
+    json: 'docs/doc.json',
+    pretty: false,
+    out: 'docs',
+}

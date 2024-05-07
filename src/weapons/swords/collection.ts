@@ -1,3 +1,5 @@
-import {Classes, Interfaces, Enums} from '../../objects'
+import {
+	Classes, Interfaces, Enums,
+} from "../../objects";
 
-export default {}
+export default {};

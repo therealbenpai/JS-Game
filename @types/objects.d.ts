@@ -33,9 +33,7 @@ export declare namespace Interfaces {
          * @description
          * Returns a JSON Object representation of the internal data within the class
          */
-        toJSON: () => {
-            [k: string]: any;
-        };
+        toJSON: () => Record<string, any>;
     }
     /**
      * @description
@@ -63,8 +61,7 @@ export declare namespace Interfaces {
      * Base initalization interface used when initalizing a class which extends the
      * {@link Classes.InternalData `Classes.InternalData`} class.
      */
-    interface BaseInitInterface extends Omit<Interfaces.InternalDataInitInterface, 'type'> {
-    }
+    type BaseInitInterface = Omit<Interfaces.InternalDataInitInterface, 'type'>;
     /**
      * @description
      * Keys found in the objects used in the
@@ -421,8 +418,7 @@ export declare namespace Interfaces {
      * @description
      * Internal data within the {@link Classes.Material `Classes.Material`} class
      */
-    interface MaterialInterface extends InternalDataInterface {
-    }
+    type MaterialInterface = InternalDataInterface;
     /**
      * @description
      * Extended version of the {@link MaterialInterface Material Interface}
@@ -449,8 +445,7 @@ export declare namespace Interfaces {
      *
      * Included all of the functions that the {@link Classes.Game `Classes.Game`} class contains
      */
-    interface GameFunctionInterface extends GameInterface {
-    }
+    type GameFunctionInterface = GameInterface;
     /**
      * @description
      * Initalization data used to initalize the {@link Classes.Game `Classes.Game`} class
@@ -632,8 +627,7 @@ export declare namespace Interfaces {
      *
      * (Extends the {@link EntityInterface Entity Interface})
     */
-    interface PlayerInterface extends EntityInterface {
-    }
+    type PlayerInterface = EntityInterface;
     /**
      * @description
      * Extended version of the {@link PlayerInterface Player Interface}
@@ -711,8 +705,7 @@ export declare namespace Interfaces {
      *
      * (Extends {@link ToolInterface Tool Interface})
      */
-    interface WeaponInterface extends ToolInterface {
-    }
+    type WeaponInterface = ToolInterface;
     /**
      * @description
      * Extended version of the {@link WeaponInterface Weapon Interface}
@@ -733,8 +726,7 @@ export declare namespace Interfaces {
      * @description
      * Internal data within the {@link Classes.Food `Classes.Food`} class
      */
-    interface FoodInterface extends InternalDataInterface {
-    }
+    type FoodInterface = InternalDataInterface;
     /**
      * @description
      * Extended version of the {@link FoodInterface Food Interface}
@@ -797,7 +789,7 @@ export declare namespace Interfaces {
          * @description
          * The flags for the block
          */
-        flags: Array<Enums.BlockFlagsEnum> | 0;
+        flags: Enums.BlockFlagsEnum[] | 0;
     }
     /**
      * @description
@@ -821,8 +813,7 @@ export declare namespace Interfaces {
      *
      * Included all of the functions that the {@link Classes.StorageSlot `Classes.StorageSlot`} class contains
      */
-    interface StorageSlotFunctionsInterface extends StorageSlotInterface {
-    }
+    type StorageSlotFunctionsInterface = StorageSlotInterface;
     /**
      * @description
      * Initalization data used to initalize the {@link Classes.StorageSlot `Classes.StorageSlot`} class
@@ -861,8 +852,7 @@ export declare namespace Interfaces {
      *
      * Included all of the functions that the {@link Classes.StorageContainer `Classes.StorageContainer`} class contains
      */
-    interface StorageContainerFunctionsInterface extends StorageContainerInterface {
-    }
+    type StorageContainerFunctionsInterface = StorageContainerInterface;
     /**
      * @description
      * Initalization data used to initalize the {@link Classes.StorageContainer `Classes.StorageContainer`} class
@@ -896,7 +886,7 @@ export declare namespace Types {
      * {@link Interfaces.EnchantmentDataInterface.effects Effects} section of the
      * {@link Interfaces.EnchantmentDataInterface Enchantment Data Interface}
      */
-    type EnchantmentEffectsType = "nightVision" | "waterBreathing" | "invisability";
+    type EnchantmentEffectsType = "nightVision" | "waterBreathing" | "invisibility";
     /**
      * @description
      * Keys within the {@link Interfaces.EnchantmentEffectInterface Enchantment Effects} section
@@ -926,7 +916,7 @@ export declare namespace Types {
      * @description
      * The undefined object class type
      */
-    type UndefinedObjectType = {
+    interface UndefinedObjectType {
         name: string;
         type: undefined;
         toJSON: () => ({
@@ -934,7 +924,7 @@ export declare namespace Types {
             name: "";
             type: undefined;
         });
-    };
+    }
 }
 export declare namespace Enums {
     /**
@@ -1126,12 +1116,23 @@ export declare namespace Classes {
      */
     class Formatters {
         /**
-         * @param data The array-set data to be converted into a valid {@link Interfaces.AttackClassStatsInterface DamageStat} object
-         * @description
          * Takes a singular array containing four sub-arrays (each with 2 values [percentage, integer]), each
          * mapping out to an object point which will be used as a {@link Interfaces.AttackClassStatsInterface DamageStat} object
+         * @param data The array-set data to be converted into a valid {@link Interfaces.AttackClassStatsInterface DamageStat} object
          */
-        static arrayToStats: (data: [[number, number], [number, number], [number, number], [number, number]]) => {
+        static arrayToStats: (data: [[
+            number,
+            number
+        ], [
+            number,
+            number
+        ], [
+            number,
+            number
+        ], [
+            number,
+            number
+        ]]) => {
             phys: {
                 percentage: number;
                 integer: number;

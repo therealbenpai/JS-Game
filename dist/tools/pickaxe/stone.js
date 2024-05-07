@@ -4,7 +4,7 @@ const objects_1 = require("../../objects");
 const ObjectData = {
     toolType: objects_1.Enums.ToolTypeEnum.PICKAXE,
     enchantments: new Map(),
-    rank: objects_1.Enums.MaterialRankEnum.STONE
+    rank: objects_1.Enums.MaterialRankEnum.STONE,
 };
 const Object = new objects_1.Classes.Tool({ id: 100, name: 'Stone Pickaxe' }, ObjectData);
 exports.default = Object;

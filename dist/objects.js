@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Consts = exports.Classes = void 0;
+/// <reference types="node" />
 const node_events_1 = require("node:events");
 var Classes;
 (function (Classes) {
@@ -13,16 +14,15 @@ var Classes;
      */
     class Formatters {
         /**
-         * @param data The array-set data to be converted into a valid {@link Interfaces.AttackClassStatsInterface DamageStat} object
-         * @description
          * Takes a singular array containing four sub-arrays (each with 2 values [percentage, integer]), each
          * mapping out to an object point which will be used as a {@link Interfaces.AttackClassStatsInterface DamageStat} object
+         * @param data The array-set data to be converted into a valid {@link Interfaces.AttackClassStatsInterface DamageStat} object
          */
         static arrayToStats = (data) => ({
             phys: { percentage: data[0][0], integer: data[0][1] },
             magic: { percentage: data[1][0], integer: data[1][1] },
             psyc: { percentage: data[2][0], integer: data[2][1] },
-            global: { percentage: data[3][0], integer: data[3][1] }
+            global: { percentage: data[3][0], integer: data[3][1] },
         });
     }
     Classes.Formatters = Formatters;
@@ -45,7 +45,7 @@ var Classes;
             this.name = data.name;
             this.type = data.type;
             Object.defineProperty(this, 'name', {
-                set: (d) => {
+                set: d => {
                     if (typeof d !== "string")
                         throw new TypeError("The name must be a string");
                     if (/[^A-Za-z0-9\.\-_ ]/gmi.test(d))
@@ -53,10 +53,10 @@ var Classes;
                     if ((d.length < 4 || d.length > 32) && this instanceof Player)
                         throw new TypeError("The name value must be between 4 and 32 charactors long");
                     this.name = d;
-                }
+                },
             });
         }
-        toJSON = () => Object.fromEntries(Object.entries(this).filter(([k, v]) => typeof v !== "function"));
+        toJSON = () => Object.fromEntries(Object.entries(this).filter(v => typeof v[1] !== "function"));
     }
     Classes.InternalData = InternalData;
     /**
@@ -94,8 +94,16 @@ var Classes;
         }
         getModifier(modifierKey) {
             const modifierLocations = modifierKey.split('.');
-            //@ts-expect-error
-            return (modifierLocations[0] === 'effects') ? this.enchantmentData['effects'][modifierLocations[1]][modifierLocations[2]] : this.enchantmentData[modifierLocations[0]][modifierLocations[1]];
+            switch (modifierLocations[0]) {
+                case 'effects':
+                    return this.enchantmentData.effects[modifierLocations[1]][modifierLocations[2]];
+                case 'entityModifiers':
+                    return this.enchantmentData.entityModifiers[modifierLocations[1]];
+                case 'itemModifiers':
+                    return this.enchantmentData.itemModifiers[modifierLocations[1]];
+                default:
+                    throw new TypeError("Invalid Modifier Key");
+            }
         }
     }
     Classes.Enchantment = Enchantment;
@@ -168,7 +176,7 @@ var Classes;
             super({ ...baseData, type: Enums.DataTypeEnum.ENTITY });
             this.hp = {
                 base: entityData.hp,
-                remaining: entityData.hp
+                remaining: entityData.hp,
             };
             this.def = entityData.def;
             this.str = entityData.str;
@@ -280,7 +288,7 @@ var Classes;
             this.rank = toolData.rank;
             this.durability = {
                 base: Consts.DurabilityMap.get(toolData.rank),
-                remaining: Consts.DurabilityMap.get(toolData.rank)
+                remaining: Consts.DurabilityMap.get(toolData.rank),
             };
             this.enchantments = toolData.enchantments;
         }
@@ -353,7 +361,7 @@ var Classes;
         object;
         constructor(storageSlotData) {
             this.slotId = storageSlotData.id;
-            this.object = (storageSlotData.obj === undefined) ? Consts.UndefinedObject : storageSlotData.obj;
+            this.object = storageSlotData.obj ?? Consts.UndefinedObject;
         }
     }
     Classes.StorageSlot = StorageSlot;
@@ -373,10 +381,8 @@ var Classes;
         slots;
         constructor(storageContainerData) {
             this.availableSlots = storageContainerData.slots;
-            this.slots = new Map();
-            for (let i = 0; i < this.availableSlots; i++) {
-                this.slots.set(i, new StorageSlot({ id: i, obj: undefined }));
-            }
+            this.slots = new Map(new Array(this.availableSlots)
+                .map((_, i) => [i, new StorageSlot({ id: i, obj: undefined })]));
         }
     }
     Classes.StorageContainer = StorageContainer;
@@ -433,15 +439,15 @@ var Consts;
         effects: {
             nightVision: {
                 requireFullSet: true,
-                activated: false
+                activated: false,
             },
             waterBreathing: {
                 requireFullSet: true,
-                activated: false
+                activated: false,
             },
             invisibility: {
                 requireFullSet: true,
-                activated: false
+                activated: false,
             },
         },
     };
@@ -458,11 +464,11 @@ var Consts;
         speed: { integer: 0, percentage: 0 },
         mana: { integer: 0, percentage: 0 },
         inteligence: { integer: 0, percentage: 0 },
-        luck: { integer: 0, percentage: 0 }
+        luck: { integer: 0, percentage: 0 },
     };
     /**
      * @description
      * The undefined object
      */
-    Consts.UndefinedObject = { name: "", type: undefined, toJSON: () => ({ id: 1, name: "", type: undefined, }) };
+    Consts.UndefinedObject = { name: "", type: undefined, toJSON: () => ({ id: 1, name: "", type: undefined }) };
 })(Consts || (exports.Consts = Consts = {}));
