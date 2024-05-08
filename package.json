@@ -21,15 +21,13 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@eslint/js": "^9.2.0",
+    "@types/node": "^20.12.9",
     "@typescript-eslint/eslint-plugin": "^7.8.0",
     "@typescript-eslint/parser": "^7.8.0",
     "eslint-plugin-jsdoc": "^48.2.3",
     "typedoc-material-theme": "^1.0.2",
-    "typescript": "^5.2.2"
-  },
-  "devDependencies": {
-    "@eslint/js": "^9.2.0",
-    "@types/node": "^20.12.9",
+    "typescript": "^5.2.2",
     "eslint": "^8.57.0",
     "globals": "^15.1.0",
     "typedoc": "^0.25.13",
