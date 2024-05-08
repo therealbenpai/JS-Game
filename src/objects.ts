@@ -631,33 +631,11 @@ export declare namespace Interfaces {
 		 * The strength stats that the entity has
 		 */
 		str: AttackClassStats;
-	}
-	/**
-	 * @description
-	 * Internal data within the {@link Classes.Player `Classes.Player`} class
-	 * 
-	 * (Extends the {@link Entity Entity Interface})
-	*/
-	export interface Player extends Entity {
-
-	}
-	/**
-	 * @description
-	 * Extended version of the {@link Player Player Interface}
-	 * 
-	 * Included all of the functions that the {@link Classes.Player `Classes.Player`} class contains
-	 * 
-	 * (Extends the {@link EntityFunction Entity Functions Interface})
-	 */
-	export interface PlayerFunction extends Player, EntityFunction {
-
-	}
-	/**
-	 * @description
-	 * Initialization data used to initialize the {@link Classes.Player `Classes.Player`} class
-	 */
-	export interface PlayerInit {
-
+		/**
+		 * @description
+		 * The type of entity that the object is
+		 */
+		type: Enums.EntityType;
 	}
 	/**
 	 * @description
@@ -970,17 +948,17 @@ export declare namespace Enums {
 		 * @description
 		 * Physical Damage
 		 */
-		PHYSICAL,
+		Physical,
 		/**
 		 * @description
 		 * Magical Damage
 		 */
-		MAGIC,
+		Magic,
 		/**
 		 * @description
 		 * Psychological Damage
 		 */
-		PSYCHOLOGICAL
+		Psychological
 	}
 	/**
 	 * @description
@@ -992,37 +970,37 @@ export declare namespace Enums {
 		 * @description
 		 * Block Data
 		 */
-		BLOCK,
+		Block,
 		/**
 		 * @description
 		 * Material Data
 		 */
-		MATERIAL,
+		Material,
 		/**
 		 * @description
 		 * Tool Data
 		 */
-		TOOL,
+		Tool,
 		/**
 		 * @description
 		 * Food Data
 		 */
-		FOOD,
+		Food,
 		/**
 		 * @description
 		 * Enchantment Data
 		 */
-		ENCHANTMENT,
+		Enchantment,
 		/**
 		 * @description
 		 * Effect Data
 		 */
-		EFFECT,
+		Effect,
 		/**
 		 * @description
 		 * Entity Data
 		 */
-		ENTITY
+		Entity
 	}
 	/**
 	 * @description
@@ -1034,41 +1012,42 @@ export declare namespace Enums {
 		 * @description
 		 * Wooden-ranking Material
 		 */
-		WOOD,
+		Wood,
 		/**
 		 * @description
 		 * Stone-ranking Material
 		 */
-		STONE, /**
+		Stone,
+		/**
         * @description
         * Ranking-ranking Material
         */
-		GOLD,
+		Gold,
 		/**
 		 * @description
 		 * Iron-ranking Material
 		 */
-		IRON,
+		Iron,
 		/**
 		 * @description
 		 * Steel-ranking Material
 		 */
-		STEEL,
+		Steel,
 		/**
 		 * @description
 		 * Diamond-ranking Material
 		 */
-		DIAMOND,
+		Diamond,
 		/**
 		 * @description
 		 * Netherite-ranking Material
 		 */
-		NETHERITE,
+		Netherite,
 		/**
 		 * @description
 		 * Indestructium-ranking Material
 		 */
-		INDESTRUCTIUM,
+		Indestructium,
 	}
 	/**
 	 * @description
@@ -1080,17 +1059,17 @@ export declare namespace Enums {
 		 * @description
 		 * Immune to explosives
 		 */
-		NOBLAST = 1 << 0,
+		NoBlast = 1 << 0,
 		/**
 		 * @description
 		 * Affected by gravity
 		 */
-		GRAVITY = 1 << 1,
+		Gravity = 1 << 1,
 		/**
 		 * @description
 		 * Entities take damage upon contact
 		 */
-		TOUCHDAMAGE = 1 << 2,
+		TouchDamage = 1 << 2,
 	}
 	/**
 	 * @description
@@ -1102,17 +1081,17 @@ export declare namespace Enums {
 		 * @description
 		 * Solid block
 		 */
-		SOLID,
+		Solid,
 		/**
 		 * @description
 		 * Liquid block
 		 */
-		LIQUID,
+		Liquid,
 		/**
 		 * @description
 		 * Gaseous Block
 		 */
-		GAS,
+		Gas,
 	}
 	/**
 	 * @description
@@ -1124,22 +1103,54 @@ export declare namespace Enums {
 		 * @description
 		 * Axe Tool
 		 */
-		AXE,
+		Axe,
 		/**
 		 * @description
 		 * Hoe Tool
 		 */
-		HOE,
+		Hoe,
 		/**
 		 * @description
 		 * Pickaxe Tool
 		 */
-		PICKAXE,
+		Pickaxe,
 		/**
 		 * @description
 		 * Shovel Tool
 		 */
-		SHOVEL
+		Shovel
+	}
+	/**
+	 * @description
+	 * Entity Type used to identify what type of entity an object is
+	 * (used in {@link Classes.Entity `Classes.Entity`})
+	 */
+	export enum EntityType {
+		/**
+		 * @description
+		 * Player Entity
+		 */
+		Player,
+		/**
+		 * @description
+		 * Hostile Mob Entity
+		 */
+		HostileMob,
+		/**
+		 * @description
+		 * Neutral Mob Entity
+		 */
+		NeutralMob,
+		/**
+		 * @description
+		 * Passive Mob Entity
+		 */
+		PassiveMob,
+		/**
+		 * @description
+		 * NPC Entity
+		 */
+		NPC
 	}
 }
 export namespace Classes {
@@ -1186,7 +1197,7 @@ export namespace Classes {
 					if (typeof d !== "string") throw new TypeError("The name must be a string")
 					if (/[^A-Za-z0-9\.\-_ ]/gmi.test(d))
 						throw new TypeError("The name can only contain alphanumeric charactors and the special charactors '-', '.', and '_'");
-					if ((d.length < 4 || d.length > 32) && this instanceof Player)
+					if ((d.length < 4 || d.length > 32))
 						throw new TypeError("The name value must be between 4 and 32 charactors long")
 					this.name = d
 				},
@@ -1210,7 +1221,7 @@ export namespace Classes {
 		enchantId: number;
 		enchantmentData: Interfaces.EnchantmentData;
 		constructor(baseData: Interfaces.BaseInit, enchantmentData: Interfaces.EnchantmentInit) {
-			super({ ...baseData, type: Enums.DataType.ENCHANTMENT })
+			super({ ...baseData, type: Enums.DataType.Enchantment })
 			this.enchantId = enchantmentData.id;
 			this.enchantmentData = Object.assign({}, Consts.BlankEnchantmentModifiers, enchantmentData.data)
 		}
@@ -1253,7 +1264,7 @@ export namespace Classes {
 	export class Effect extends InternalData implements Interfaces.EffectFunctions {
 		modifiedStats: Interfaces.EntityStatsMod;
 		constructor(baseData: Interfaces.BaseInit, effectData: Interfaces.EffectInit) {
-			super({ ...baseData, type: Enums.DataType.EFFECT })
+			super({ ...baseData, type: Enums.DataType.Effect })
 			this.modifiedStats = Object.assign({}, effectData.stats, Consts.BlankEntityStatsMod)
 		}
 	}
@@ -1268,7 +1279,7 @@ export namespace Classes {
 	 */
 	export class Material extends InternalData implements Interfaces.MaterialFunction {
 		constructor(baseData: Interfaces.BaseInit, materialData: Interfaces.MaterialInit) {
-			super({ ...baseData, type: Enums.DataType.MATERIAL })
+			super({ ...baseData, type: Enums.DataType.Material })
 		}
 	}
 	/**
@@ -1300,8 +1311,9 @@ export namespace Classes {
 		vol: Set<number>;
 		inventory: StorageContainer;
 		effects: Map<number, Effect>;
+		entityType: Enums.EntityType;
 		constructor(baseData: Interfaces.BaseInit, entityData: Interfaces.EntityInit) {
-			super({ ...baseData, type: Enums.DataType.ENTITY });
+			super({ ...baseData, type: Enums.DataType.Entity });
 			this.hp = {
 				base: entityData.hp,
 				remaining: entityData.hp,
@@ -1311,14 +1323,15 @@ export namespace Classes {
 			this.vol = new Set().add(0).add(0) as Set<number>
 			this.inventory = new StorageContainer({ slots: 0 })
 			this.effects = new Map() as Map<number, Effect>
+			this.entityType = entityData.type;
 		}
 		public takeDamage(damage: Interfaces.DamageData): this {
 			switch (damage.type) {
-			case Enums.DamageType.PHYSICAL:
+			case Enums.DamageType.Physical:
 				break;
-			case Enums.DamageType.MAGIC:
+			case Enums.DamageType.Magic:
 				break;
-			case Enums.DamageType.PSYCHOLOGICAL:
+			case Enums.DamageType.Psychological:
 				break;
 			default:
 				break;
@@ -1373,21 +1386,6 @@ export namespace Classes {
 	}
 	/**
 	 * @class
-	 * @extends Entity
-	 * @classdesc
-	 * Player Object
-	 * 
-	 * The Player class holds information relating to players used and available to the game.
-	 * This class is used for any and all Players within the game.
-	 */
-	export class Player extends Entity implements Interfaces.PlayerFunction {
-		constructor(baseData: Interfaces.BaseInit, entityData: Interfaces.EntityInit, playerData: Interfaces.PlayerInit) {
-			super(baseData, entityData)
-			this.inventory = new StorageContainer({ slots: 36 })
-		}
-	}
-	/**
-	 * @class
 	 * @extends InternalData
 	 * @classdesc
 	 * Tool Object
@@ -1401,7 +1399,7 @@ export namespace Classes {
 		durability: Interfaces.ItemBaseRemainingStats;
 		enchantments: Map<number, Enchantment>;
 		constructor(baseData: Interfaces.BaseInit, toolData: Interfaces.ToolInit) {
-			super({ ...baseData, type: Enums.DataType.TOOL })
+			super({ ...baseData, type: Enums.DataType.Tool })
 			this.toolType = toolData.toolType;
 			this.rank = toolData.rank;
 			this.durability = {
@@ -1436,7 +1434,7 @@ export namespace Classes {
 	 */
 	export class Food extends InternalData implements Interfaces.FoodFunctions {
 		constructor(baseData: Interfaces.BaseInit, foodData: Interfaces.FoodInit) {
-			super({ ...baseData, type: Enums.DataType.FOOD })
+			super({ ...baseData, type: Enums.DataType.Food })
 		}
 	}
 	/**
@@ -1453,7 +1451,7 @@ export namespace Classes {
 		blockType: Enums.BlockType;
 		flags: number;
 		constructor(baseData: Interfaces.BaseInit, blockData: Interfaces.BlockInit) {
-			super({ ...baseData, type: Enums.DataType.BLOCK });
+			super({ ...baseData, type: Enums.DataType.Block });
 			this.sprite = blockData.sprite;
 			this.blockType = blockData.type;
 			this.flags = (blockData.flags) ? blockData.flags.reduce((a, b) => a + b, 0) : 0
@@ -1511,14 +1509,14 @@ export namespace Consts {
 	 */
 	export const DurabilityMap =
 		new Map()
-			.set(Enums.MaterialRank.WOOD, 59)
-			.set(Enums.MaterialRank.STONE, 131)
-			.set(Enums.MaterialRank.GOLD, 32) //? This hurts me :c
-			.set(Enums.MaterialRank.IRON, 250)
-			.set(Enums.MaterialRank.STEEL, 752)
-			.set(Enums.MaterialRank.DIAMOND, 1561)
-			.set(Enums.MaterialRank.NETHERITE, 2031)
-			.set(Enums.MaterialRank.INDESTRUCTIUM, Infinity) as Map<Enums.MaterialRank, number>;
+			.set(Enums.MaterialRank.Wood, 59)
+			.set(Enums.MaterialRank.Stone, 131)
+			.set(Enums.MaterialRank.Gold, 32) //? This hurts me :c
+			.set(Enums.MaterialRank.Iron, 250)
+			.set(Enums.MaterialRank.Steel, 752)
+			.set(Enums.MaterialRank.Diamond, 1561)
+			.set(Enums.MaterialRank.Netherite, 2031)
+			.set(Enums.MaterialRank.Indestructium, Infinity) as Map<Enums.MaterialRank, number>;
 	/**
 	 * @description
 	 * Blank/default version of the

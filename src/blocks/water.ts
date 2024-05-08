@@ -3,7 +3,7 @@ import {Classes, Interfaces, Enums} from '../objects'
 const BlockData: Interfaces.BlockInit = {
 	sprite: '',
 	flags: [],
-	type: Enums.BlockType.LIQUID,
+	type: Enums.BlockType.Liquid,
 }
 
 const Water = new Classes.Block({ id: 2, name: 'Water' }, BlockData)
