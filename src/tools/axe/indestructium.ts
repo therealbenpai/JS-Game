@@ -1,9 +1,9 @@
 import {Classes, Interfaces, Enums} from '../../objects'
 
 const ObjectData = {
-	toolType: Enums.ToolTypeEnum.AXE,
+	toolType: Enums.ToolType.AXE,
 	enchantments: new Map() as Map<number, Classes.Enchantment>,
-	rank: Enums.MaterialRankEnum.INDESTRUCTIUM,
+	rank: Enums.MaterialRank.INDESTRUCTIUM,
 }
 
 const Object = new Classes.Tool({id: 100, name: 'Indestructium Axe'}, ObjectData)

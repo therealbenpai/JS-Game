@@ -10,18 +10,18 @@ var Classes;
      * @classdesc
      * Formatters Object
      *
-     * The Formatters class contains utility formating functions that can assist in development for the application.
+     * The Formatters class contains utility formatting functions that can assist in development for the application.
      */
     class Formatters {
         /**
          * Takes a singular array containing four sub-arrays (each with 2 values [percentage, integer]), each
-         * mapping out to an object point which will be used as a {@link Interfaces.AttackClassStatsInterface DamageStat} object
-         * @param data The array-set data to be converted into a valid {@link Interfaces.AttackClassStatsInterface DamageStat} object
+         * mapping out to an object point which will be used as a {@link Interfaces.AttackClassStats DamageStat} object
+         * @param data The array-set data to be converted into a valid {@link Interfaces.AttackClassStats DamageStat} object
          */
         static arrayToStats = (data) => ({
             phys: { percentage: data[0][0], integer: data[0][1] },
             magic: { percentage: data[1][0], integer: data[1][1] },
-            psyc: { percentage: data[2][0], integer: data[2][1] },
+            psych: { percentage: data[2][0], integer: data[2][1] },
             global: { percentage: data[3][0], integer: data[3][1] },
         });
     }
@@ -65,17 +65,17 @@ var Classes;
      * @classdesc
      * Enchantment Object
      *
-     * The Enchantment class holds information relating to enchantments used and availible to the game.
+     * The Enchantment class holds information relating to enchantments used and available to the game.
      * This class is used for any and all enchantments within the game.
      *
-     * Main property is the `enchantmentData` varible in which contains all of the modifiers that the enchantment
+     * Main property is the `enchantmentData` variable in which contains all of the modifiers that the enchantment
      * provides.
      */
     class Enchantment extends InternalData {
         enchantId;
         enchantmentData;
         constructor(baseData, enchantmentData) {
-            super({ ...baseData, type: Enums.DataTypeEnum.ENCHANTMENT });
+            super({ ...baseData, type: Enums.DataType.ENCHANTMENT });
             this.enchantId = enchantmentData.id;
             this.enchantmentData = Object.assign({}, Consts.BlankEnchantmentModifiers, enchantmentData.data);
         }
@@ -113,16 +113,16 @@ var Classes;
      * @classdesc
      * Effect Object
      *
-     * The Effect class holds information relating to status effects used and availible to the game.
+     * The Effect class holds information relating to status effects used and available to the game.
      * This class is used for any and all status effects within the game.
      *
-     * Main property is the `modifiedStats` varible in which contains all of the modifiers that the
+     * Main property is the `modifiedStats` variable in which contains all of the modifiers that the
      * status effect provides.
      */
     class Effect extends InternalData {
         modifiedStats;
         constructor(baseData, effectData) {
-            super({ ...baseData, type: Enums.DataTypeEnum.EFFECT });
+            super({ ...baseData, type: Enums.DataType.EFFECT });
             this.modifiedStats = Object.assign({}, effectData.stats, Consts.BlankEntityStatsMod);
         }
     }
@@ -133,12 +133,12 @@ var Classes;
      * @classdesc
      * Material Object
      *
-     * The Material class holds information relating to materials used and availible to the game.
+     * The Material class holds information relating to materials used and available to the game.
      * This class is used for any and all materials within the game.
      */
     class Material extends InternalData {
         constructor(baseData, materialData) {
-            super({ ...baseData, type: Enums.DataTypeEnum.MATERIAL });
+            super({ ...baseData, type: Enums.DataType.MATERIAL });
         }
     }
     Classes.Material = Material;
@@ -160,10 +160,10 @@ var Classes;
      * @classdesc
      * Entity Object
      *
-     * The Entity class holds information relating to entites used and availible to the game.
+     * The Entity class holds information relating to entities used and available to the game.
      * This class is used for any and all entities (including players) within the game.
      *
-     * The class has many values defined in the {@link Interfaces.EntityInterface Entity Interface}
+     * The class has many values defined in the {@link Interfaces.Entity Entity Interface}
      */
     class Entity extends InternalData {
         hp;
@@ -173,7 +173,7 @@ var Classes;
         inventory;
         effects;
         constructor(baseData, entityData) {
-            super({ ...baseData, type: Enums.DataTypeEnum.ENTITY });
+            super({ ...baseData, type: Enums.DataType.ENTITY });
             this.hp = {
                 base: entityData.hp,
                 remaining: entityData.hp,
@@ -186,11 +186,11 @@ var Classes;
         }
         takeDamage(damage) {
             switch (damage.type) {
-                case Enums.DamageTypeEnum.PHYSICAL:
+                case Enums.DamageType.PHYSICAL:
                     break;
-                case Enums.DamageTypeEnum.MAGIC:
+                case Enums.DamageType.MAGIC:
                     break;
-                case Enums.DamageTypeEnum.PSYCOLOGICAL:
+                case Enums.DamageType.PSYCHOLOGICAL:
                     break;
                 default:
                     break;
@@ -200,16 +200,16 @@ var Classes;
         getBaseHealth() {
             return this.hp.base;
         }
-        addBaseHealth(ammount) {
-            if (ammount < 0)
-                throw new TypeError("Amount must be a possitive integer");
-            this.hp.base += ammount;
+        addBaseHealth(amount) {
+            if (amount < 0)
+                throw new TypeError("Amount must be a positive integer");
+            this.hp.base += amount;
             return this;
         }
-        removeBaseHealth(ammount) {
-            if (ammount < 0)
-                throw new TypeError("Amount must be a possitive integer");
-            this.hp.base -= ammount;
+        removeBaseHealth(amount) {
+            if (amount < 0)
+                throw new TypeError("Amount must be a positive integer");
+            this.hp.base -= amount;
             if (this.hp.base < 0)
                 this.hp.base = 0;
             if (this.hp.remaining > this.hp.base)
@@ -219,18 +219,18 @@ var Classes;
         getRemainingHealth() {
             return this.hp.remaining;
         }
-        addRemainingHealth(ammount) {
-            if (ammount < 0)
-                throw new TypeError("Ammount must be a possitive integer");
-            this.hp.remaining += ammount;
+        addRemainingHealth(amount) {
+            if (amount < 0)
+                throw new TypeError("Amount must be a positive integer");
+            this.hp.remaining += amount;
             if (this.hp.base < this.hp.remaining)
                 this.hp.remaining = this.hp.base;
             return this;
         }
-        removeRemainingHealth(ammount) {
-            if (ammount < 0)
-                throw new TypeError("Amount must be a possitive integer");
-            this.hp.remaining -= ammount;
+        removeRemainingHealth(amount) {
+            if (amount < 0)
+                throw new TypeError("Amount must be a positive integer");
+            this.hp.remaining -= amount;
             if (this.hp.remaining < 0)
                 this.hp.remaining = 0;
             return this;
@@ -258,7 +258,7 @@ var Classes;
      * @classdesc
      * Player Object
      *
-     * The Player class holds information relating to players used and availible to the game.
+     * The Player class holds information relating to players used and available to the game.
      * This class is used for any and all Players within the game.
      */
     class Player extends Entity {
@@ -274,7 +274,7 @@ var Classes;
      * @classdesc
      * Tool Object
      *
-     * The Tool class holds information relating to Tools used and availible to the game.
+     * The Tool class holds information relating to Tools used and available to the game.
      * This class is used for any and all Tools within the game.
      */
     class Tool extends InternalData {
@@ -283,7 +283,7 @@ var Classes;
         durability;
         enchantments;
         constructor(baseData, toolData) {
-            super({ ...baseData, type: Enums.DataTypeEnum.TOOL });
+            super({ ...baseData, type: Enums.DataType.TOOL });
             this.toolType = toolData.toolType;
             this.rank = toolData.rank;
             this.durability = {
@@ -300,7 +300,7 @@ var Classes;
      * @classdesc
      * Weapon Object
      *
-     * The Weapon class holds information relating to Weapons used and availible to the game.
+     * The Weapon class holds information relating to Weapons used and available to the game.
      * This class is used for any and all Weapons within the game.
      */
     class Weapon extends Tool {
@@ -315,12 +315,12 @@ var Classes;
      * @classdesc
      * Food Object
      *
-     * The Food class holds information relating to Foods used and availible to the game.
+     * The Food class holds information relating to Foods used and available to the game.
      * This class is used for any and all Foods within the game.
      */
     class Food extends InternalData {
         constructor(baseData, foodData) {
-            super({ ...baseData, type: Enums.DataTypeEnum.FOOD });
+            super({ ...baseData, type: Enums.DataType.FOOD });
         }
     }
     Classes.Food = Food;
@@ -330,7 +330,7 @@ var Classes;
      * @classdesc
      * Block Object
      *
-     * The Block class holds information relating to Blocks used and availible to the game.
+     * The Block class holds information relating to Blocks used and available to the game.
      * This class is used for any and all Blocks within the game.
      */
     class Block extends InternalData {
@@ -338,7 +338,7 @@ var Classes;
         blockType;
         flags;
         constructor(baseData, blockData) {
-            super({ ...baseData, type: Enums.DataTypeEnum.BLOCK });
+            super({ ...baseData, type: Enums.DataType.BLOCK });
             this.sprite = blockData.sprite;
             this.blockType = blockData.type;
             this.flags = (blockData.flags) ? blockData.flags.reduce((a, b) => a + b, 0) : 0;
@@ -351,10 +351,10 @@ var Classes;
      * @classdesc
      * Storage Slot Object
      *
-     * The Storage Slot class holds information relating to Storage Slots used and availible to the game.
+     * The Storage Slot class holds information relating to Storage Slots used and available to the game.
      * This class is used for any and all Storage Slots within the game.
      *
-     * Main property is the `object` varible in which contains the stored item data
+     * Main property is the `object` variable in which contains the stored item data
      */
     class StorageSlot {
         slotId;
@@ -371,7 +371,7 @@ var Classes;
      * @classdesc
      * Storage Container Object
      *
-     * The Storage Container class holds information relating to Storage Containers used and availible to the game.
+     * The Storage Container class holds information relating to Storage Containers used and available to the game.
      * This class is used for any and all Storage Containers within the game.
      *
      * This class is composed of sub-{@link StorageSlot Storage Slots} which contain all of the stored item data
@@ -391,31 +391,31 @@ var Consts;
 (function (Consts) {
     /**
      * @description
-     * Duribility Map
+     * Durability Map
      *
-     * Contains all of the duribility values for the material ranks
+     * Contains all of the durability values for the material ranks
      * (used in {@link Classes.Tool `Classes.Tool`})
      */
     Consts.DurabilityMap = new Map()
-        .set(Enums.MaterialRankEnum.WOOD, 59)
-        .set(Enums.MaterialRankEnum.STONE, 131)
-        .set(Enums.MaterialRankEnum.GOLD, 32) //? This hurts me :c
-        .set(Enums.MaterialRankEnum.IRON, 250)
-        .set(Enums.MaterialRankEnum.STEEL, 752)
-        .set(Enums.MaterialRankEnum.DIAMOND, 1561)
-        .set(Enums.MaterialRankEnum.NETHERITE, 2031)
-        .set(Enums.MaterialRankEnum.INDESTRUCTIUM, Infinity);
+        .set(Enums.MaterialRank.WOOD, 59)
+        .set(Enums.MaterialRank.STONE, 131)
+        .set(Enums.MaterialRank.GOLD, 32) //? This hurts me :c
+        .set(Enums.MaterialRank.IRON, 250)
+        .set(Enums.MaterialRank.STEEL, 752)
+        .set(Enums.MaterialRank.DIAMOND, 1561)
+        .set(Enums.MaterialRank.NETHERITE, 2031)
+        .set(Enums.MaterialRank.INDESTRUCTIUM, Infinity);
     /**
      * @description
      * Blank/default version of the
-     * {@link Interfaces.EnchantmentDataInterface Enchantment Data Interface}
+     * {@link Interfaces.EnchantmentData Enchantment Data Interface}
      */
     Consts.BlankEnchantmentModifiers = {
         itemModifiers: {
             efficiencyModifier: 1,
             physicalAttackModifier: 1,
             magicAttackModifier: 1,
-            psycologicalAttackModifier: 1,
+            psychologicalAttackModifier: 1,
             globalAttackModifier: 1,
             baseAttackModifier: 1,
             durabilityModifier: 1,
@@ -423,12 +423,12 @@ var Consts;
         entityModifiers: {
             physicalAttackModifier: 1,
             magicAttackModifier: 1,
-            psycologicalAttackModifier: 1,
+            psychologicalAttackModifier: 1,
             globalAttackModifier: 1,
             baseAttackModifier: 1,
             physicalDefenseModifier: 1,
             magicDefenseModifier: 1,
-            psycologicalDefenseModifier: 1,
+            psychologicalDefenseModifier: 1,
             globalDefenseModifier: 1,
             baseDefenseModifier: 1,
             healthModifier: 1,
@@ -455,15 +455,15 @@ var Consts;
         health: { integer: 0, percentage: 0 },
         physDamage: { integer: 0, percentage: 0 },
         magicDamage: { integer: 0, percentage: 0 },
-        psycDamage: { integer: 0, percentage: 0 },
+        psychDamage: { integer: 0, percentage: 0 },
         globalDamage: { integer: 0, percentage: 0 },
-        physDefence: { integer: 0, percentage: 0 },
-        magicDefence: { integer: 0, percentage: 0 },
-        psycDefence: { integer: 0, percentage: 0 },
-        globalDefence: { integer: 0, percentage: 0 },
+        physDefense: { integer: 0, percentage: 0 },
+        magicDefense: { integer: 0, percentage: 0 },
+        psychDefense: { integer: 0, percentage: 0 },
+        globalDefense: { integer: 0, percentage: 0 },
         speed: { integer: 0, percentage: 0 },
         mana: { integer: 0, percentage: 0 },
-        inteligence: { integer: 0, percentage: 0 },
+        intelligence: { integer: 0, percentage: 0 },
         luck: { integer: 0, percentage: 0 },
     };
     /**

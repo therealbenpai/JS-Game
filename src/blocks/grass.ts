@@ -1,9 +1,9 @@
 import {Classes, Interfaces, Enums} from '../objects'
 
-const BlockData: Interfaces.BlockInitInterface = {
+const BlockData: Interfaces.BlockInit = {
 	sprite: '',
 	flags: [],
-	type: Enums.BlockTypeEnum.SOLID,
+	type: Enums.BlockType.SOLID,
 }
 
 const Grass = new Classes.Block({ id: 2, name: 'Grass Block' }, BlockData)
