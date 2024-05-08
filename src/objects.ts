@@ -2,8 +2,8 @@
 import { EventEmitter } from 'node:events';
 export declare namespace Interfaces {
 	/**
-	 * @description
-	 * Internal data within the {@link Classes.InternalData `Classes.InternalData`} class
+	 * Internal data within the
+	 * {@link Classes.InternalData `Classes.InternalData`} class
 	 */
 	export interface InternalData {
 		/** 
@@ -23,7 +23,6 @@ export declare namespace Interfaces {
 		type: Enums.DataType | undefined
 	}
 	/**
-	 * @description
 	 * Extended version of the {@link InternalData Internal Data Interface}
 	 * 
 	 * Included all of the functions that the {@link Classes.InternalData `Classes.InternalData`} class contains
@@ -36,8 +35,8 @@ export declare namespace Interfaces {
 		toJSON: () => Record<string, any>
 	}
 	/**
-	 * @description
-	 * Initialization data used to initialize the {@link Classes.InternalData `Classes.InternalData`} class
+	 * Initialization data used to initialize the
+	 * {@link Classes.InternalData `Classes.InternalData`} class
 	 */
 	export interface InternalDataInit {
 		/** 
@@ -57,7 +56,6 @@ export declare namespace Interfaces {
 		type: Enums.DataType | undefined
 	}
 	/**
-	 * @description
 	 * Base initialization interface used when initializing a class which extends the
 	 * {@link Classes.InternalData `Classes.InternalData`} class.
 	 */
@@ -65,7 +63,6 @@ export declare namespace Interfaces {
 
 	}
 	/**
-	 * @description
 	 * Keys found in the objects used in the
 	 * {@link EnchantmentData.effects Effects} object within the
 	 * {@link EnchantmentData Enchantment Data Interface}
@@ -83,7 +80,6 @@ export declare namespace Interfaces {
 		activated: boolean
 	}
 	/**
-	 * @description
 	 * Full Enchantment Data used within the
 	 * {@link Classes.Enchantment `Classes.Enchantment`} class
 	 */
@@ -231,7 +227,6 @@ export declare namespace Interfaces {
 		} | undefined
 	}
 	/**
-	 * @description
 	 * Internal data within the {@link Classes.Enchantment `Classes.Enchantment`} class
 	 */
 	export interface Enchantment extends InternalData {
@@ -247,7 +242,6 @@ export declare namespace Interfaces {
 		enchantmentData: EnchantmentData;
 	}
 	/**
-	 * @description
 	 * Extended version of the {@link Enchantment Enchantment Interface}
 	 * 
 	 * Included all of the functions that the {@link Classes.Enchantment `Classes.Enchantment`} class contains
@@ -268,7 +262,6 @@ export declare namespace Interfaces {
 		getModifier(modifierKey: Types.EnchantmentKeys): number | boolean
 	}
 	/**
-	 * @description
 	 * Initialization data used to initialize the {@link Classes.Enchantment `Classes.Enchantment`} class
 	 */
 	export interface EnchantmentInit {
@@ -284,7 +277,6 @@ export declare namespace Interfaces {
 		data: EnchantmentData;
 	}
 	/**
-	 * @description
 	 * Layout of entity/item stats
 	 */
 	export interface StatusModification {
@@ -300,7 +292,6 @@ export declare namespace Interfaces {
 		integer: number
 	}
 	/**
-	 * @description
 	 * Full data dealing with entity stats modification
 	 */
 	export interface EntityStatsMod {
@@ -371,7 +362,6 @@ export declare namespace Interfaces {
 		luck: StatusModification
 	}
 	/**
-	 * @description
 	 * Contains data relating to the damage dealt to an entity
 	 */
 	export interface DamageData {
@@ -387,7 +377,6 @@ export declare namespace Interfaces {
 		type: Enums.DamageType
 	}
 	/**
-	 * @description
 	 * Internal data within the {@link Classes.Effect `Classes.Effect`} class
 	 */
 	export interface Effect extends InternalData {
@@ -398,7 +387,6 @@ export declare namespace Interfaces {
 		modifiedStats: EntityStatsMod
 	}
 	/**
-	 * @description
 	 * Extended version of the {@link Effect Effect Interface}
 	 * 
 	 * Included all of the functions that the {@link Classes.Effect `Classes.Effect`} class contains
@@ -407,7 +395,6 @@ export declare namespace Interfaces {
 
 	}
 	/**
-	 * @description
 	 * Initialization data used to initialize the {@link Classes.Effect `Classes.Effect`} class
 	 */
 	export interface EffectInit {
@@ -418,14 +405,12 @@ export declare namespace Interfaces {
 		stats: EntityStatsMod
 	}
 	/**
-	 * @description
 	 * Internal data within the {@link Classes.Material `Classes.Material`} class
 	 */
 	export interface Material extends InternalData {
 
 	}
 	/**
-	 * @description
 	 * Extended version of the {@link Material Material Interface}
 	 * 
 	 * Included all of the functions that the {@link Classes.Material `Classes.Material`} class contains
@@ -434,21 +419,18 @@ export declare namespace Interfaces {
 
 	}
 	/**
-	 * @description
 	 * Initialization data used to initialize the {@link Classes.Material `Classes.Material`} class
 	 */
 	export interface MaterialInit {
 
 	}
 	/**
-	 * @description
 	 * Internal data within the {@link Classes.Game `Classes.Game`} class
 	 */
 	export interface Game {
 
 	}
 	/**
-	 * @description
 	 * Extended version of the {@link Game Game Interface}
 	 * 
 	 * Included all of the functions that the {@link Classes.Game `Classes.Game`} class contains
@@ -457,14 +439,12 @@ export declare namespace Interfaces {
 
 	}
 	/**
-	 * @description
 	 * Initialization data used to initialize the {@link Classes.Game `Classes.Game`} class
 	 */
 	export interface GameInit {
 
 	}
 	/**
-	 * @description
 	 * Contains data relating to the Attack Damage that an entity deals
 	 */
 	export interface AttackClassStats {
@@ -490,7 +470,6 @@ export declare namespace Interfaces {
 		global: StatusModification
 	}
 	/**
-	 * @description
 	 * Interface for data points which have a `base` and a `remaining` value
 	 */
 	export interface ItemBaseRemainingStats {
@@ -506,7 +485,6 @@ export declare namespace Interfaces {
 		remaining: number
 	}
 	/**
-	 * @description
 	 * Internal data within the {@link Classes.Entity `Classes.Entity`} class
 	 */
 	export interface Entity {
@@ -542,7 +520,6 @@ export declare namespace Interfaces {
 		effects: Map<number, Classes.Effect>
 	}
 	/**
-	 * @description
 	 * Extended version of the {@link Entity Entity Interface}
 	 * 
 	 * Included all of the functions that the {@link Classes.Entity `Classes.Entity`} class contains
@@ -612,7 +589,6 @@ export declare namespace Interfaces {
 		clearEffects(): this
 	}
 	/**
-	 * @description
 	 * Initialization data used to initialize the {@link Classes.Entity `Classes.Entity`} class
 	 */
 	export interface EntityInit {
@@ -638,7 +614,6 @@ export declare namespace Interfaces {
 		type: Enums.EntityType;
 	}
 	/**
-	 * @description
 	 * Internal data within the {@link Classes.Tool `Classes.Tool`} class
 	 */
 	export interface Tool extends InternalData {
@@ -664,7 +639,6 @@ export declare namespace Interfaces {
 		enchantments: Map<number, Classes.Enchantment>
 	}
 	/**
-	 * @description
 	 * Extended version of the {@link Tool Tool Interface}
 	 * 
 	 * Included all of the functions that the {@link Classes.Tool `Classes.Tool`} class contains
@@ -673,7 +647,6 @@ export declare namespace Interfaces {
 
 	}
 	/**
-	 * @description
 	 * Initialization data used to initialize the {@link Classes.Tool `Classes.Tool`} class
 	 */
 	export interface ToolInit {
@@ -694,7 +667,6 @@ export declare namespace Interfaces {
 		enchantments: Map<number, Classes.Enchantment>
 	}
 	/**
-	 * @description
 	 * Internal data within the {@link Classes.Weapon `Classes.Weapon`} class
 	 * 
 	 * (Extends {@link Tool Tool Interface})
@@ -703,7 +675,6 @@ export declare namespace Interfaces {
 
 	}
 	/**
-	 * @description
 	 * Extended version of the {@link Weapon Weapon Interface}
 	 * 
 	 * Included all of the functions that the {@link Classes.Weapon `Classes.Weapon`} class contains
@@ -714,21 +685,18 @@ export declare namespace Interfaces {
 
 	}
 	/**
-	 * @description
 	 * Initialization data used to initialize the {@link Classes.Weapon `Classes.Weapon`} class
 	 */
 	export interface WeaponInit {
 
 	}
 	/**
-	 * @description
 	 * Internal data within the {@link Classes.Food `Classes.Food`} class
 	 */
 	export interface Food extends InternalData {
 
 	}
 	/**
-	 * @description
 	 * Extended version of the {@link Food Food Interface}
 	 * 
 	 * Included all of the functions that the {@link Classes.Food `Classes.Food`} class contains
@@ -737,14 +705,12 @@ export declare namespace Interfaces {
 
 	}
 	/**
-	 * @description
 	 * Initialization data used to initialize the {@link Classes.Food `Classes.Food`} class
 	 */
 	export interface FoodInit {
 
 	}
 	/**
-	 * @description
 	 * Internal data within the {@link Classes.Block `Classes.Block`} class
 	 */
 	export interface Block extends InternalData {
@@ -765,7 +731,6 @@ export declare namespace Interfaces {
 		flags: Enums.BlockFlags | 0
 	}
 	/**
-	 * @description
 	 * Extended version of the {@link Block Block Interface}
 	 * 
 	 * Included all of the functions that the {@link Classes.Block `Classes.Block`} class contains
@@ -774,7 +739,6 @@ export declare namespace Interfaces {
 
 	}
 	/**
-	 * @description
 	 * Initialization data used to initialize the {@link Classes.Block `Classes.Block`} class
 	 */
 	export interface BlockInit {
@@ -795,7 +759,6 @@ export declare namespace Interfaces {
 		flags: Enums.BlockFlags[] | 0
 	}
 	/**
-	 * @description
 	 * Internal data within the {@link Classes.StorageSlot `Classes.StorageSlot`} class
 	 */
 	export interface StorageSlot {
@@ -811,7 +774,6 @@ export declare namespace Interfaces {
 		object: Classes.Block | Classes.Food | Classes.Weapon | Classes.Tool | UndefinedObject
 	}
 	/**
-	 * @description
 	 * Extended version of the {@link StorageSlot Storage Slot Interface}
 	 * 
 	 * Included all of the functions that the {@link Classes.StorageSlot `Classes.StorageSlot`} class contains
@@ -820,7 +782,6 @@ export declare namespace Interfaces {
 
 	}
 	/**
-	 * @description
 	 * Initialization data used to initialize the {@link Classes.StorageSlot `Classes.StorageSlot`} class
 	 */
 	export interface StorageSlotInit {
@@ -836,7 +797,6 @@ export declare namespace Interfaces {
 		obj: Classes.Block | Classes.Food | Classes.Weapon | Classes.Tool | undefined
 	}
 	/**
-	 * @description
 	 * Internal data within the {@link Classes.StorageContainer `Classes.StorageContainer`} class
 	 */
 	export interface StorageContainer {
@@ -852,7 +812,6 @@ export declare namespace Interfaces {
 		slots: Map<number, Classes.StorageSlot>
 	}
 	/**
-	 * @description
 	 * Extended version of the {@link StorageContainer Storage Container Interface}
 	 * 
 	 * Included all of the functions that the {@link Classes.StorageContainer `Classes.StorageContainer`} class contains
@@ -861,7 +820,6 @@ export declare namespace Interfaces {
 
 	}
 	/**
-	 * @description
 	 * Initialization data used to initialize the {@link Classes.StorageContainer `Classes.StorageContainer`} class
 	 */
 	export interface StorageContainerInit {
@@ -872,7 +830,6 @@ export declare namespace Interfaces {
 		slots: number
 	}
 	/**
-	 * @description
 	 * The undefined object class type
 	 */
 	export interface UndefinedObject {
@@ -883,7 +840,6 @@ export declare namespace Interfaces {
 }
 export declare namespace Types {
 	/**
-	 * @description
 	 * Keys within the
 	 * {@link Interfaces.EnchantmentData.itemModifiers Item Modifiers} section of the
 	 * {@link Interfaces.EnchantmentData Enchantment Data Interface}
@@ -893,7 +849,6 @@ export declare namespace Types {
 		"psychologicalAttackModifier" | "globalAttackModifier" |
 		"baseAttackModifier" | "durabilityModifier";
 	/**
-	 * @description
 	 * Keys within the
 	 * {@link Interfaces.EnchantmentData.entityModifiers Entity Modifiers} section of the
 	 * {@link Interfaces.EnchantmentData Enchantment Data Interface}
@@ -907,7 +862,6 @@ export declare namespace Types {
 		"healthModifier" | "regenerationModifier" |
 		"speedModifier" | "waterMovementModifier";
 	/**
-	 * @description
 	 * Keys within the
 	 * {@link Interfaces.EnchantmentData.effects Effects} section of the
 	 * {@link Interfaces.EnchantmentData Enchantment Data Interface}
@@ -915,13 +869,11 @@ export declare namespace Types {
 	export type EnchantmentEffects =
 		"nightVision" | "waterBreathing" | "invisibility";
 	/**
-	 * @description
 	 * Keys within the {@link Interfaces.EnchantmentEffect Enchantment Effects} section
 	 */
 	export type EnchantmentEffectOptions =
 		"requireFullSet" | "activated";
 	/**
-	 * @description
 	 * Location Descriptor that represents a location within the {@link Interfaces.EnchantmentData Enchantment Data Interface}
 	 */
 	export type EnchantmentKeys =
@@ -929,7 +881,6 @@ export declare namespace Types {
 		`entityModifiers.${EnchantmentEntityModifiers}` |
 		`effects.${EnchantmentEffects}.${EnchantmentEffectOptions}`;
 	/**
-	 * @description
 	 * Split-up Array-mapped version of the {@link Types.EnchantmentKeys Enchantment Keys Type}
 	 */
 	export type EnchantmentKeyLocationArray =
@@ -939,71 +890,39 @@ export declare namespace Types {
 }
 export declare namespace Enums {
 	/**
-	 * @description
 	 * Damage Types used to identify what type of damage to deal
-	 * (used in both {@link Classes.Entity `Classes.Entity`} and {@link Classes.Weapon `Classes.Weapon`})
+	 * (used in both {@link Classes.Entity `Classes.Entity`}
+	 * and {@link Classes.Weapon `Classes.Weapon`})
 	 */
 	export enum DamageType {
-		/**
-		 * @description
-		 * Physical Damage
-		 */
+		/** Physical Damage */
 		Physical,
-		/**
-		 * @description
-		 * Magical Damage
-		 */
+		/** Magical Damage */
 		Magic,
-		/**
-		 * @description
-		 * Psychological Damage
-		 */
+		/** Psychological Damage */
 		Psychological
 	}
 	/**
-	 * @description
 	 * Data Type to identify what type of data is being stored
 	 * (used in {@link Classes.InternalData `Classes.InternalData`})
 	 */
 	export enum DataType {
-		/**
-		 * @description
-		 * Block Data
-		 */
+		/** Block Data */
 		Block,
-		/**
-		 * @description
-		 * Material Data
-		 */
+		/** Material Data */
 		Material,
-		/**
-		 * @description
-		 * Tool Data
-		 */
+		/** Tool Data */
 		Tool,
-		/**
-		 * @description
-		 * Food Data
-		 */
+		/** Food Data */
 		Food,
-		/**
-		 * @description
-		 * Enchantment Data
-		 */
+		/** Enchantment Data */
 		Enchantment,
-		/**
-		 * @description
-		 * Effect Data
-		 */
+		/** Effect Data */
 		Effect,
-		/**
-		 * @description
-		 * Entity Data
-		 */
+		/** Entity Data */
 		Entity
 	}
 	/**
-	 * @description
 	 * The material rank of the object
 	 * (used in {@link Classes.Tool `Classes.Tool`})
 	 */
@@ -1050,7 +969,6 @@ export declare namespace Enums {
 		Indestructium,
 	}
 	/**
-	 * @description
 	 * Block Data Flags used to add on special pre-defined behaviors within the game
 	 * (used in {@link Classes.Block `Classes.Block`})
 	 */
@@ -1072,7 +990,6 @@ export declare namespace Enums {
 		TouchDamage = 1 << 2,
 	}
 	/**
-	 * @description
 	 * Block type identifier used to determine pre-defined actions, colliders, and physics for the block
 	 * (used in {@link Classes.Block `Classes.Block`})
 	 */
@@ -1094,7 +1011,6 @@ export declare namespace Enums {
 		Gas,
 	}
 	/**
-	 * @description
 	 * Tool types used to identify what type of tool an object is
 	 * (used in {@link Classes.Tool `Classes.Tool`})
 	 */
@@ -1121,7 +1037,6 @@ export declare namespace Enums {
 		Shovel
 	}
 	/**
-	 * @description
 	 * Entity Type used to identify what type of entity an object is
 	 * (used in {@link Classes.Entity `Classes.Entity`})
 	 */
@@ -1155,8 +1070,6 @@ export declare namespace Enums {
 }
 export namespace Classes {
 	/**
-	 * @class
-	 * @classdesc
 	 * Formatters Object
 	 * 
 	 * The Formatters class contains utility formatting functions that can assist in development for the application.
@@ -1175,13 +1088,11 @@ export namespace Classes {
 		})
 	}
 	/**
-	 * @class
-	 * @extends EventEmitter
-	 * @classdesc
 	 * Internal Data Object
 	 * 
 	 * The base class of almost everything used within the game. Has 3 main properties:
 	 * `id`: number, `name`: string, and `type`: DataType | undefined
+	 * @extends EventEmitter
 	 */
 	export class InternalData extends EventEmitter implements Interfaces.InternalFunctions {
 		id: number;
@@ -1206,9 +1117,6 @@ export namespace Classes {
 		public toJSON = () => Object.fromEntries(Object.entries(this).filter(v => typeof v[1] !== "function"));
 	}
 	/**
-	 * @class
-	 * @extends InternalData
-	 * @classdesc
 	 * Enchantment Object
 	 * 
 	 * The Enchantment class holds information relating to enchantments used and available to the game.
@@ -1216,6 +1124,7 @@ export namespace Classes {
 	 * 
 	 * Main property is the `enchantmentData` variable in which contains all of the modifiers that the enchantment
 	 * provides.
+	 * @extends InternalData
 	 */
 	export class Enchantment extends InternalData implements Interfaces.EnchantmentFunction {
 		enchantId: number;
@@ -1250,9 +1159,6 @@ export namespace Classes {
 		}
 	}
 	/**
-	 * @class
-	 * @extends InternalData
-	 * @classdesc
 	 * Effect Object
 	 * 
 	 * The Effect class holds information relating to status effects used and available to the game.
@@ -1260,6 +1166,7 @@ export namespace Classes {
 	 * 
 	 * Main property is the `modifiedStats` variable in which contains all of the modifiers that the
 	 * status effect provides.
+	 * @extends InternalData
 	 */
 	export class Effect extends InternalData implements Interfaces.EffectFunctions {
 		modifiedStats: Interfaces.EntityStatsMod;
@@ -1269,13 +1176,11 @@ export namespace Classes {
 		}
 	}
 	/**
-	 * @class
-	 * @extends InternalData
-	 * @classdesc
 	 * Material Object
 	 * 
 	 * The Material class holds information relating to materials used and available to the game.
 	 * This class is used for any and all materials within the game.
+	 * @extends InternalData
 	 */
 	export class Material extends InternalData implements Interfaces.MaterialFunction {
 		constructor(baseData: Interfaces.BaseInit, materialData: Interfaces.MaterialInit) {
@@ -1283,26 +1188,22 @@ export namespace Classes {
 		}
 	}
 	/**
-	 * @class
-	 * @extends InternalData
-	 * @classdesc
 	 * Game Object
 	 * 
 	 * The Game class holds information relating to the current game
+	 * @extends InternalData
 	 */
 	export class Game implements Interfaces.GameFunction {
 		constructor(gameData: Interfaces.GameInit) { }
 	}
 	/**
-	 * @class
-	 * @extends InternalData
-	 * @classdesc
 	 * Entity Object
 	 * 
 	 * The Entity class holds information relating to entities used and available to the game.
 	 * This class is used for any and all entities (including players) within the game.
 	 * 
 	 * The class has many values defined in the {@link Interfaces.Entity Entity Interface}
+	 * @extends InternalData
 	 */
 	export class Entity extends InternalData implements Interfaces.EntityFunction {
 		hp: Interfaces.ItemBaseRemainingStats;
@@ -1385,14 +1286,12 @@ export namespace Classes {
 		}
 	}
 	/**
-	 * @class
-	 * @extends InternalData
-	 * @classdesc
 	 * Tool Object
 	 * 
 	 * The Tool class holds information relating to Tools used and available to the game.
 	 * This class is used for any and all Tools within the game.
-	 */
+	 * @extends InternalData
+	*/
 	export class Tool extends InternalData implements Interfaces.ToolFunction {
 		toolType: Enums.ToolType;
 		rank: Enums.MaterialRank;
@@ -1410,13 +1309,11 @@ export namespace Classes {
 		}
 	}
 	/**
-	 * @class
-	 * @extends Tool
-	 * @classdesc
 	 * Weapon Object
 	 * 
 	 * The Weapon class holds information relating to Weapons used and available to the game.
 	 * This class is used for any and all Weapons within the game.
+	 * @extends Tool
 	 */
 	export class Weapon extends Tool implements Interfaces.WeaponFunction {
 		constructor(baseData: Interfaces.BaseInit, toolData: Interfaces.ToolInit, weaponData: Interfaces.WeaponInit) {
@@ -1424,13 +1321,11 @@ export namespace Classes {
 		}
 	}
 	/**
-	 * @class
-	 * @extends InternalData
-	 * @classdesc
 	 * Food Object
 	 * 
 	 * The Food class holds information relating to Foods used and available to the game.
 	 * This class is used for any and all Foods within the game.
+	 * @extends InternalData
 	 */
 	export class Food extends InternalData implements Interfaces.FoodFunctions {
 		constructor(baseData: Interfaces.BaseInit, foodData: Interfaces.FoodInit) {
@@ -1438,13 +1333,11 @@ export namespace Classes {
 		}
 	}
 	/**
-	 * @class
-	 * @extends InternalData
-	 * @classdesc
 	 * Block Object
 	 * 
 	 * The Block class holds information relating to Blocks used and available to the game.
 	 * This class is used for any and all Blocks within the game.
+	 * @extends InternalData
 	 */
 	export class Block extends InternalData implements Interfaces.BlockFunctions {
 		sprite: string;
@@ -1458,15 +1351,13 @@ export namespace Classes {
 		}
 	}
 	/**
-	 * @class
-	 * @extends InternalData
-	 * @classdesc
 	 * Storage Slot Object
 	 * 
 	 * The Storage Slot class holds information relating to Storage Slots used and available to the game.
 	 * This class is used for any and all Storage Slots within the game.
 	 * 
 	 * Main property is the `object` variable in which contains the stored item data
+	 * @extends InternalData
 	 */
 	export class StorageSlot implements Interfaces.StorageSlotFunctions {
 		slotId: number;
@@ -1477,16 +1368,14 @@ export namespace Classes {
 		}
 	}
 	/**
-	 * @class
-	 * @extends InternalData
-	 * @classdesc
 	 * Storage Container Object
 	 * 
 	 * The Storage Container class holds information relating to Storage Containers used and available to the game.
 	 * This class is used for any and all Storage Containers within the game.
 	 * 
 	 * This class is composed of sub-{@link StorageSlot Storage Slots} which contain all of the stored item data
-	 */
+	 * @extends InternalData
+	*/
 	export class StorageContainer implements Interfaces.StorageContainerFunctions {
 		availableSlots: number;
 		slots: Map<number, StorageSlot>;
@@ -1501,7 +1390,6 @@ export namespace Classes {
 }
 export namespace Consts {
 	/**
-	 * @description
 	 * Durability Map
 	 * 
 	 * Contains all of the durability values for the material ranks
@@ -1518,7 +1406,6 @@ export namespace Consts {
 			.set(Enums.MaterialRank.Netherite, 2031)
 			.set(Enums.MaterialRank.Indestructium, Infinity) as Map<Enums.MaterialRank, number>;
 	/**
-	 * @description
 	 * Blank/default version of the
 	 * {@link Interfaces.EnchantmentData Enchantment Data Interface}
 	 */
@@ -1579,7 +1466,6 @@ export namespace Consts {
 		luck: { integer: 0, percentage: 0 },
 	}
 	/**
-	 * @description
 	 * The undefined object
 	 */
 	export const UndefinedObject: Interfaces.UndefinedObject = { name: "", type: undefined, toJSON: () => ({ id: 1, name: "", type: undefined }) }
