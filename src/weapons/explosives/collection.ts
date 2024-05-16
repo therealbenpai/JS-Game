@@ -1,5 +1,9 @@
-import {
-	Classes, Interfaces, Enums,
-} from "../../objects";
+/**
+ * @packageDocumentation
+ * Explosives Collection File
+ * 
+ * This file exports all the explosives in the game.
+ */
+import { Classes } from "../../objects";
 
-export default {};
+export default new Map() as Map<string, Classes.Weapon>;

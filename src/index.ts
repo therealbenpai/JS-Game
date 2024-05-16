@@ -1,13 +1,13 @@
 /**
- * @pacakgeDocumentation
+ * @packageDocumentation
  * Index (Main) File
  * 
  * This is the main file for the game engine.
  * 
  * It exports the main game object, which is a singleton object that holds all the data for the game.
  */
-import Objects from './objects'
-import Data from './collection'
+import Main from './objects'
+import { Objects } from './collection'
 
 /**
  * The ActiveGame constant is the main class that holds all the data for the game.
@@ -19,9 +19,11 @@ import Data from './collection'
  * It is also used to store the current state of the game, such as the current level, the current score, etc.
  * @constant ActiveGame
  */
-const ActiveGame = new Objects.Class.Game({});
+const ActiveGame = new Main.Class.Game({
+    player: Objects.Entities.get('player'),
+});
 
 export default {
     Game: ActiveGame,
-    Objects: Data,
+    Objects: Main,
 }

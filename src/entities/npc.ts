@@ -1,12 +1,12 @@
 import {Classes, Interfaces, Enums} from '../objects'
 
 const entityData: Interfaces.EntityInit = {
-	hp: 20,
+	hp: 10,
 	str: Classes.Formatters.arrayToStats([ [ 0, 1 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ] ]),
 	def: Classes.Formatters.arrayToStats([ [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ] ]),
-	type: Enums.EntityType.Player,
+	type: Enums.EntityType.NPC,
 }
 
-const Entity = new Classes.Entity({ id: 2, name: 'Player' }, entityData)
+const Entity = new Classes.Entity({ id: 3, name: 'NPC' }, entityData)
 
 export default Entity

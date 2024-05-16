@@ -1,3 +1,10 @@
+/**
+ * @packageDocumentation
+ * Shovels Collection File
+ * 
+ * This file exports all the shovels in the game.
+ */
+import { Classes } from "../../objects";
 import Diamond from "./diamond";
 import Gold from "./gold";
 import Indestructium from "./indestructium";
@@ -7,6 +14,12 @@ import Steel from "./steel";
 import Stone from "./stone";
 import Wood from "./wood";
 
-export default {
-	Diamond, Gold, Indestructium, Iron, Netherite, Steel, Stone, Wood,
-};
+export default new Map()
+	.set("diamond", Diamond)
+	.set("gold", Gold)
+	.set("indestructium", Indestructium)
+	.set("iron", Iron)
+	.set("netherite", Netherite)
+	.set("steel", Steel)
+	.set("stone", Stone)
+	.set("wood", Wood) as Map<string, Classes.Tool>;

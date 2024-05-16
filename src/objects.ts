@@ -8,51 +8,25 @@
 import { EventEmitter } from 'node:events';
 declare namespace Interfaces {
 	/**
-	 * Internal data within the
-	 * {@link Classes.InternalData `Classes.InternalData`} class
+	 * Contains data relating to the Attack Damage that an entity deals
 	 */
-	export interface InternalData {
-		/** 
-		 * The internal ID of the object 
-		 */
-		id: number
+	export interface AttackClassStats {
 		/**
-		 * The human-readable display name of the object
+		 * Physical Damage Modifier Data
 		 */
-		name: string
+		phys: StatusModification
 		/**
-		 * The data type of the object
+		 * Magical Damage Modifier Data
 		 */
-		type: Enums.DataType | undefined
-	}
-	/**
-	 * Extended version of the {@link InternalData Internal Data Interface}
-	 * 
-	 * Included all of the functions that the {@link Classes.InternalData `Classes.InternalData`} class contains
-	 */
-	export interface InternalFunctions extends InternalData {
+		magic: StatusModification
 		/**
-		 * Returns a JSON Object representation of the internal data within the class
+		 * Psychological Damage Modifier Data
 		 */
-		toJSON: () => Record<string, any>
-	}
-	/**
-	 * Initialization data used to initialize the
-	 * {@link Classes.InternalData `Classes.InternalData`} class
-	 */
-	export interface InternalDataInit {
-		/** 
-		 * The internal ID of the object 
-		 */
-		id: number
+		psych: StatusModification
 		/**
-		 * The human-readable display name of the object
+		 * Global Damage Modifier Data
 		 */
-		name: string
-		/**
-		 * The data type of the object
-		 */
-		type: Enums.DataType | undefined
+		global: StatusModification
 	}
 	/**
 	 * Base initialization interface used when initializing a class which extends the
@@ -61,19 +35,96 @@ declare namespace Interfaces {
 	export interface BaseInit extends Omit<InternalDataInit, 'type'> {
 	}
 	/**
-	 * Keys found in the objects used in the
-	 * {@link EnchantmentData.effects Effects} object within the
-	 * {@link EnchantmentData Enchantment Data Interface}
+	 * Internal data within the {@link Classes.Block `Classes.Block`} class
 	 */
-	export interface EnchantmentEffect {
+	export interface Block extends InternalData {
 		/**
-		 * Determines if the entity requires the full armour set to receive the specified effect
+		 * The path to the sprite (excluding the `/assets` dir)
 		 */
-		requireFullSet: boolean
+		sprite: string
 		/**
-		 * Determines if the armor piece provides the specified effect
+		 * The block type
 		 */
-		activated: boolean
+		blockType: Enums.BlockType
+		/**
+		 * The flags for the block
+		 */
+		flags: Enums.BlockFlags | 0
+	}
+	/**
+	 * Extended version of the {@link Block Block Interface}
+	 * 
+	 * Included all of the functions that the {@link Classes.Block `Classes.Block`} class contains
+	 */
+	export interface BlockFunctions extends InternalFunctions, Block {
+	}
+	/**
+	 * Initialization data used to initialize the {@link Classes.Block `Classes.Block`} class
+	 */
+	export interface BlockInit {
+		/**
+		 * The path to the sprite (excluding the `/assets` dir)
+		 */
+		sprite: string
+		/**
+		 * The block type
+		 */
+		type: Enums.BlockType
+		/**
+		 * The flags for the block
+		 */
+		flags: Enums.BlockFlags[] | 0
+	}
+	/**
+	 * Contains data relating to the damage dealt to an entity
+	 */
+	export interface DamageData {
+		/**
+		 * Amount of damage dealt to the entity
+		 */
+		amm: number
+		/**
+		 * Type of damage taken
+		 */
+		type: Enums.DamageType
+	}
+	/**
+	 * Internal data within the {@link Classes.Effect `Classes.Effect`} class
+	 */
+	export interface Effect extends InternalData {
+		/**
+		 * The Stats modifier data that the effect provides
+		 */
+		modifiedStats: EntityStatsMod
+	}
+	/**
+	 * Extended version of the {@link Effect Effect Interface}
+	 * 
+	 * Included all of the functions that the {@link Classes.Effect `Classes.Effect`} class contains
+	 */
+	export interface EffectFunctions extends InternalFunctions, Effect {
+	}
+	/**
+	 * Initialization data used to initialize the {@link Classes.Effect `Classes.Effect`} class
+	 */
+	export interface EffectInit {
+		/**
+		 * The Stats modifier data that the effect provides
+		 */
+		stats: EntityStatsMod
+	}
+	/**
+	 * Internal data within the {@link Classes.Enchantment `Classes.Enchantment`} class
+	 */
+	export interface Enchantment extends InternalData {
+		/**
+		 * Identifier of the enchantment
+		 */
+		enchantId: number;
+		/**
+		 * All of the modifiers that the enchantment provides
+		 */
+		enchantmentData: EnchantmentData;
 	}
 	/**
 	 * Full Enchantment Data used within the
@@ -196,17 +247,19 @@ declare namespace Interfaces {
 		} | undefined
 	}
 	/**
-	 * Internal data within the {@link Classes.Enchantment `Classes.Enchantment`} class
+	 * Keys found in the objects used in the
+	 * {@link EnchantmentData.effects Effects} object within the
+	 * {@link EnchantmentData Enchantment Data Interface}
 	 */
-	export interface Enchantment extends InternalData {
+	export interface EnchantmentEffect {
 		/**
-		 * Identifier of the enchantment
+		 * Determines if the entity requires the full armour set to receive the specified effect
 		 */
-		enchantId: number;
+		requireFullSet: boolean
 		/**
-		 * All of the modifiers that the enchantment provides
+		 * Determines if the armor piece provides the specified effect
 		 */
-		enchantmentData: EnchantmentData;
+		activated: boolean
 	}
 	/**
 	 * Extended version of the {@link Enchantment Enchantment Interface}
@@ -238,182 +291,6 @@ declare namespace Interfaces {
 		 * All of the modifiers that the enchantment provides
 		 */
 		data: EnchantmentData;
-	}
-	/**
-	 * Layout of entity/item stats
-	 */
-	export interface StatusModification {
-		/**
-		 * The percentage modifier (`x.yz` ==> `xyz`%)
-		 */
-		percentage: number
-		/**
-		 * The integer modifier (`x` ==> `+ x`)
-		 */
-		integer: number
-	}
-	/**
-	 * Full data dealing with entity stats modification
-	 */
-	export interface EntityStatsMod {
-		/**
-		 * Health Modifier Data
-		 */
-		health: StatusModification
-		/**
-		 * Physical Damage Modifier Data
-		 */
-		physDamage: StatusModification
-		/**
-		 * Magical Damage Modifier Data
-		 */
-		magicDamage: StatusModification
-		/**
-		 * Psychological Damage Modifier Data
-		 */
-		psychDamage: StatusModification
-		/**
-		 * Global Damage Modifier Data
-		 */
-		globalDamage: StatusModification
-		/**
-		 * Physical Defense Modifier Data
-		 */
-		physDefense: StatusModification
-		/**
-		 * Magical Defense Modifier Data
-		 */
-		magicDefense: StatusModification
-		/**
-		 * Psychological Defense Modifier Data
-		 */
-		psychDefense: StatusModification
-		/**
-		 * Global Defense Modifier Data
-		 */
-		globalDefense: StatusModification
-		/**
-		 * Speed Modifier Data
-		 */
-		speed: StatusModification
-		/**
-		 * Mana Modifier Data
-		 */
-		mana: StatusModification
-		/**
-		 * Intelligence Modifier Data
-		 */
-		intelligence: StatusModification
-		/**
-		 * Luck Modifier Data
-		 */
-		luck: StatusModification
-	}
-	/**
-	 * Contains data relating to the damage dealt to an entity
-	 */
-	export interface DamageData {
-		/**
-		 * Amount of damage dealt to the entity
-		 */
-		amm: number
-		/**
-		 * Type of damage taken
-		 */
-		type: Enums.DamageType
-	}
-	/**
-	 * Internal data within the {@link Classes.Effect `Classes.Effect`} class
-	 */
-	export interface Effect extends InternalData {
-		/**
-		 * The Stats modifier data that the effect provides
-		 */
-		modifiedStats: EntityStatsMod
-	}
-	/**
-	 * Extended version of the {@link Effect Effect Interface}
-	 * 
-	 * Included all of the functions that the {@link Classes.Effect `Classes.Effect`} class contains
-	 */
-	export interface EffectFunctions extends InternalFunctions, Effect {
-	}
-	/**
-	 * Initialization data used to initialize the {@link Classes.Effect `Classes.Effect`} class
-	 */
-	export interface EffectInit {
-		/**
-		 * The Stats modifier data that the effect provides
-		 */
-		stats: EntityStatsMod
-	}
-	/**
-	 * Internal data within the {@link Classes.Material `Classes.Material`} class
-	 */
-	export interface Material extends InternalData {
-	}
-	/**
-	 * Extended version of the {@link Material Material Interface}
-	 * 
-	 * Included all of the functions that the {@link Classes.Material `Classes.Material`} class contains
-	 */
-	export interface MaterialFunction extends InternalFunctions, Material {
-	}
-	/**
-	 * Initialization data used to initialize the {@link Classes.Material `Classes.Material`} class
-	 */
-	export interface MaterialInit {
-	}
-	/**
-	 * Internal data within the {@link Classes.Game `Classes.Game`} class
-	 */
-	export interface Game {
-	}
-	/**
-	 * Extended version of the {@link Game Game Interface}
-	 * 
-	 * Included all of the functions that the {@link Classes.Game `Classes.Game`} class contains
-	 */
-	export interface GameFunction extends Game {
-	}
-	/**
-	 * Initialization data used to initialize the {@link Classes.Game `Classes.Game`} class
-	 */
-	export interface GameInit {
-	}
-	/**
-	 * Contains data relating to the Attack Damage that an entity deals
-	 */
-	export interface AttackClassStats {
-		/**
-		 * Physical Damage Modifier Data
-		 */
-		phys: StatusModification
-		/**
-		 * Magical Damage Modifier Data
-		 */
-		magic: StatusModification
-		/**
-		 * Psychological Damage Modifier Data
-		 */
-		psych: StatusModification
-		/**
-		 * Global Damage Modifier Data
-		 */
-		global: StatusModification
-	}
-	/**
-	 * Interface for data points which have a `base` and a `remaining` value
-	 */
-	export interface ItemBaseRemainingStats {
-		/**
-		 * The base amount
-		 */
-		base: number
-		/**
-		 * The remaining amount
-		 */
-		remaining: number
 	}
 	/**
 	 * Internal data within the {@link Classes.Entity `Classes.Entity`} class
@@ -525,6 +402,249 @@ declare namespace Interfaces {
 		type: Enums.EntityType;
 	}
 	/**
+	 * Full data dealing with entity stats modification
+	 */
+	export interface EntityStatsMod {
+		/**
+		 * Health Modifier Data
+		 */
+		health?: StatusModification
+		/**
+		 * Physical Damage Modifier Data
+		 */
+		physDamage?: StatusModification
+		/**
+		 * Magical Damage Modifier Data
+		 */
+		magicDamage?: StatusModification
+		/**
+		 * Psychological Damage Modifier Data
+		 */
+		psychDamage?: StatusModification
+		/**
+		 * Global Damage Modifier Data
+		 */
+		globalDamage?: StatusModification
+		/**
+		 * Physical Defense Modifier Data
+		 */
+		physDefense?: StatusModification
+		/**
+		 * Magical Defense Modifier Data
+		 */
+		magicDefense?: StatusModification
+		/**
+		 * Psychological Defense Modifier Data
+		 */
+		psychDefense?: StatusModification
+		/**
+		 * Global Defense Modifier Data
+		 */
+		globalDefense?: StatusModification
+		/**
+		 * Speed Modifier Data
+		 */
+		speed?: StatusModification
+		/**
+		 * Mana Modifier Data
+		 */
+		mana?: StatusModification
+		/**
+		 * Intelligence Modifier Data
+		 */
+		intelligence?: StatusModification
+		/**
+		 * Luck Modifier Data
+		 */
+		luck?: StatusModification
+	}
+	/**
+	 * Internal data within the {@link Classes.Food `Classes.Food`} class
+	 */
+	export interface Food extends InternalData {
+	}
+	/**
+	 * Extended version of the {@link Food Food Interface}
+	 * 
+	 * Included all of the functions that the {@link Classes.Food `Classes.Food`} class contains
+	 */
+	export interface FoodFunctions extends InternalFunctions, Food {
+	}
+	/**
+	 * Initialization data used to initialize the {@link Classes.Food `Classes.Food`} class
+	 */
+	export interface FoodInit {
+	}
+	/**
+	 * Internal data within the {@link Classes.Game `Classes.Game`} class
+	 */
+	export interface Game {
+	}
+	/**
+	 * Extended version of the {@link Game Game Interface}
+	 * 
+	 * Included all of the functions that the {@link Classes.Game `Classes.Game`} class contains
+	 */
+	export interface GameFunction extends Game {
+	}
+	/**
+	 * Initialization data used to initialize the {@link Classes.Game `Classes.Game`} class
+	 */
+	export interface GameInit {
+	}
+	/**
+	 * Internal data within the
+	 * {@link Classes.InternalData `Classes.InternalData`} class
+	 */
+	export interface InternalData {
+		/** 
+		 * The internal ID of the object 
+		 */
+		id: number
+		/**
+		 * The human-readable display name of the object
+		 */
+		name: string
+		/**
+		 * The data type of the object
+		 */
+		type: Enums.DataType | undefined
+	}
+	/**
+	 * Initialization data used to initialize the
+	 * {@link Classes.InternalData `Classes.InternalData`} class
+	 */
+	export interface InternalDataInit {
+		/** 
+		 * The internal ID of the object 
+		 */
+		id: number
+		/**
+		 * The human-readable display name of the object
+		 */
+		name: string
+		/**
+		 * The data type of the object
+		 */
+		type: Enums.DataType | undefined
+	}
+	/**
+	 * Extended version of the {@link InternalData Internal Data Interface}
+	 * 
+	 * Included all of the functions that the {@link Classes.InternalData `Classes.InternalData`} class contains
+	 */
+	export interface InternalFunctions extends InternalData {
+		/**
+		 * Returns a JSON Object representation of the internal data within the class
+		 */
+		toJSON: () => Record<string, any>
+	}
+	/**
+	 * Interface for data points which have a `base` and a `remaining` value
+	 */
+	export interface ItemBaseRemainingStats {
+		/**
+		 * The base amount
+		 */
+		base: number
+		/**
+		 * The remaining amount
+		 */
+		remaining: number
+	}
+	/**
+	 * Internal data within the {@link Classes.Material `Classes.Material`} class
+	 */
+	export interface Material extends InternalData {
+	}
+	/**
+	 * Extended version of the {@link Material Material Interface}
+	 * 
+	 * Included all of the functions that the {@link Classes.Material `Classes.Material`} class contains
+	 */
+	export interface MaterialFunction extends InternalFunctions, Material {
+	}
+	/**
+	 * Initialization data used to initialize the {@link Classes.Material `Classes.Material`} class
+	 */
+	export interface MaterialInit {
+	}
+	/**
+	 * Layout of entity/item stats
+	 */
+	export interface StatusModification {
+		/**
+		 * The percentage modifier (`x.yz` ==> `xyz`%)
+		 */
+		percentage: number
+		/**
+		 * The integer modifier (`x` ==> `+ x`)
+		 */
+		integer: number
+	}
+	/**
+	 * Internal data within the {@link Classes.StorageContainer `Classes.StorageContainer`} class
+	 */
+	export interface StorageContainer {
+		/**
+		 * The amount of slots available
+		 */
+		availableSlots: number
+		/**
+		 * A map containing the Storage Slots
+		 */
+		slots: Map<number, Classes.StorageSlot>
+	}
+	/**
+	 * Extended version of the {@link StorageContainer Storage Container Interface}
+	 * 
+	 * Included all of the functions that the {@link Classes.StorageContainer `Classes.StorageContainer`} class contains
+	 */
+	export interface StorageContainerFunctions extends StorageContainer {
+	}
+	/**
+	 * Initialization data used to initialize the {@link Classes.StorageContainer `Classes.StorageContainer`} class
+	 */
+	export interface StorageContainerInit {
+		/**
+		 * The amount of available slots
+		 */
+		slots: number
+	}
+	/**
+	 * Internal data within the {@link Classes.StorageSlot `Classes.StorageSlot`} class
+	 */
+	export interface StorageSlot {
+		/**
+		 * The ID of the slot
+		 */
+		slotId: number
+		/**
+		 * The object data for the slot
+		 */
+		object: Classes.Block | Classes.Food | Classes.Weapon | Classes.Tool | UndefinedObject
+	}
+	/**
+	 * Extended version of the {@link StorageSlot Storage Slot Interface}
+	 * 
+	 * Included all of the functions that the {@link Classes.StorageSlot `Classes.StorageSlot`} class contains
+	 */
+	export interface StorageSlotFunctions extends StorageSlot {
+	}
+	/**
+	 * Initialization data used to initialize the {@link Classes.StorageSlot `Classes.StorageSlot`} class
+	 */
+	export interface StorageSlotInit {
+		/**
+		 * The ID of the slot
+		 */
+		id: number
+		/**
+		 * The object data for the slot
+		 */
+		obj: Classes.Block | Classes.Food | Classes.Weapon | Classes.Tool | undefined
+	}
+	/**
 	 * Internal data within the {@link Classes.Tool `Classes.Tool`} class
 	 */
 	export interface Tool extends InternalData {
@@ -570,6 +690,14 @@ declare namespace Interfaces {
 		enchantments: Map<number, Classes.Enchantment>
 	}
 	/**
+	 * The undefined object class type
+	 */
+	export interface UndefinedObject {
+		name: string,
+		type: undefined,
+		toJSON: () => ({ id: 1, name: "", type: undefined })
+	}
+	/**
 	 * Internal data within the {@link Classes.Weapon `Classes.Weapon`} class
 	 * 
 	 * (Extends {@link Tool Tool Interface})
@@ -589,134 +717,6 @@ declare namespace Interfaces {
 	 * Initialization data used to initialize the {@link Classes.Weapon `Classes.Weapon`} class
 	 */
 	export interface WeaponInit {
-	}
-	/**
-	 * Internal data within the {@link Classes.Food `Classes.Food`} class
-	 */
-	export interface Food extends InternalData {
-	}
-	/**
-	 * Extended version of the {@link Food Food Interface}
-	 * 
-	 * Included all of the functions that the {@link Classes.Food `Classes.Food`} class contains
-	 */
-	export interface FoodFunctions extends InternalFunctions, Food {
-	}
-	/**
-	 * Initialization data used to initialize the {@link Classes.Food `Classes.Food`} class
-	 */
-	export interface FoodInit {
-	}
-	/**
-	 * Internal data within the {@link Classes.Block `Classes.Block`} class
-	 */
-	export interface Block extends InternalData {
-		/**
-		 * The path to the sprite (excluding the `/assets` dir)
-		 */
-		sprite: string
-		/**
-		 * The block type
-		 */
-		blockType: Enums.BlockType
-		/**
-		 * The flags for the block
-		 */
-		flags: Enums.BlockFlags | 0
-	}
-	/**
-	 * Extended version of the {@link Block Block Interface}
-	 * 
-	 * Included all of the functions that the {@link Classes.Block `Classes.Block`} class contains
-	 */
-	export interface BlockFunctions extends InternalFunctions, Block {
-	}
-	/**
-	 * Initialization data used to initialize the {@link Classes.Block `Classes.Block`} class
-	 */
-	export interface BlockInit {
-		/**
-		 * The path to the sprite (excluding the `/assets` dir)
-		 */
-		sprite: string
-		/**
-		 * The block type
-		 */
-		type: Enums.BlockType
-		/**
-		 * The flags for the block
-		 */
-		flags: Enums.BlockFlags[] | 0
-	}
-	/**
-	 * Internal data within the {@link Classes.StorageSlot `Classes.StorageSlot`} class
-	 */
-	export interface StorageSlot {
-		/**
-		 * The ID of the slot
-		 */
-		slotId: number
-		/**
-		 * The object data for the slot
-		 */
-		object: Classes.Block | Classes.Food | Classes.Weapon | Classes.Tool | UndefinedObject
-	}
-	/**
-	 * Extended version of the {@link StorageSlot Storage Slot Interface}
-	 * 
-	 * Included all of the functions that the {@link Classes.StorageSlot `Classes.StorageSlot`} class contains
-	 */
-	export interface StorageSlotFunctions extends StorageSlot {
-	}
-	/**
-	 * Initialization data used to initialize the {@link Classes.StorageSlot `Classes.StorageSlot`} class
-	 */
-	export interface StorageSlotInit {
-		/**
-		 * The ID of the slot
-		 */
-		id: number
-		/**
-		 * The object data for the slot
-		 */
-		obj: Classes.Block | Classes.Food | Classes.Weapon | Classes.Tool | undefined
-	}
-	/**
-	 * Internal data within the {@link Classes.StorageContainer `Classes.StorageContainer`} class
-	 */
-	export interface StorageContainer {
-		/**
-		 * The amount of slots available
-		 */
-		availableSlots: number
-		/**
-		 * A map containing the Storage Slots
-		 */
-		slots: Map<number, Classes.StorageSlot>
-	}
-	/**
-	 * Extended version of the {@link StorageContainer Storage Container Interface}
-	 * 
-	 * Included all of the functions that the {@link Classes.StorageContainer `Classes.StorageContainer`} class contains
-	 */
-	export interface StorageContainerFunctions extends StorageContainer {
-	}
-	/**
-	 * Initialization data used to initialize the {@link Classes.StorageContainer `Classes.StorageContainer`} class
-	 */
-	export interface StorageContainerInit {
-		/**
-		 * The amount of available slots
-		 */
-		slots: number
-	}
-	/**
-	 * The undefined object class type
-	 */
-	export interface UndefinedObject {
-		name: string,
-		type: undefined,
-		toJSON: () => ({ id: 1, name: "", type: undefined })
 	}
 }
 declare namespace Types {

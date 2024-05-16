@@ -1,4 +1,4 @@
-import {Classes, Interfaces, Enums} from '../objects'
+import {Classes, Interfaces, Enums} from '../../objects'
 
 const BlockData: Interfaces.BlockInit = {
 	sprite: '',

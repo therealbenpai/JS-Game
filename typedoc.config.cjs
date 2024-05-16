@@ -6,7 +6,14 @@ module.exports = {
     darkHighlightTheme: "material-theme-darker",
     emit: 'both',
     entryPointStrategy: "expand",
-    entryPoints: ["src/index.ts", "src/objects.ts", "src/collection.ts"],
+    entryPoints: ['index', 'objects', 'collection',
+        ['swords', 'guns', 'explosives', 'bows']
+            .map(v => `weapons/${v}/collection`),
+        ['axe', 'hoe', 'pickaxe', 'shovel']
+            .map(v => `tools/${v}/collection`),
+        ['blocks', 'enchantments', 'effects', 'entities']
+            .map(v => `${v}/collection`)
+    ].flat(1).map(v => `src/${v}.ts`),
     excludeExternals: true,
     gaID: 'G-8Z61QGB1L9',
     hideGenerator: true,
