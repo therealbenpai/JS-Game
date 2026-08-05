@@ -1,0 +1,13 @@
+[test]
+root = "tests"
+coverage = true
+coverageReporter = ["text", "lcov"]
+coverageDir = "coverage"
+# onlyFailures = true
+
+[test.reporter]
+junit = "coverage/junit.xml"
+
+[run]
+bun = true
+silent = true

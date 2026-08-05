@@ -1,11 +1,11 @@
-import {Classes, Interfaces, Enums} from '../../objects'
+import { Classes, Interfaces, Enums } from '../../objects';
 
 const BlockData: Interfaces.BlockInit = {
-	sprite: '',
-	flags: [],
-	type: Enums.BlockType.Liquid,
-}
+    sprite: '',
+    flags: [],
+    type: Enums.BlockType.Liquid,
+};
 
-const Water = new Classes.Block({ id: 2, name: 'Water' }, BlockData)
+const Water = new Classes.Block({ id: 2, name: 'Water' }, BlockData);
 
-export default Water
+export default Water;

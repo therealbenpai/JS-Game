@@ -1,11 +1,11 @@
-import {Classes, Interfaces, Enums} from '../../objects'
+import { Classes, Interfaces, Enums } from '../../objects';
 
 const ObjectData = {
-	toolType: Enums.ToolType.Axe,
-	enchantments: new Map() as Map<number, Classes.Enchantment>,
-	rank: Enums.MaterialRank.Wood,
-}
+    toolType: Enums.ToolType.Axe,
+    enchantments: new Map() as Map<number, Classes.Enchantment>,
+    rank: Enums.MaterialRank.Wood,
+};
 
-const Object = new Classes.Tool({id: 100, name: 'Wooden Axe'}, ObjectData)
+const Object = new Classes.Tool({ id: 100, name: 'Wooden Axe' }, ObjectData);
 
-export default Object
+export default Object;

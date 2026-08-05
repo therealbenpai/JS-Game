@@ -5,3 +5,6 @@ docs
 dist
 @types
 !plugins/**
+keys/**
+!.gitkeep
+*.DS_Store
